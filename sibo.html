@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Test oddechowy SIBO — diagnostyka wodorowo-metanowa." />
+  <title>Test SIBO — Dietetyk Karolina Bierlit</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/air-datepicker@3.4.0/air-datepicker.css">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+  <div id="Action_bar">
+    <div class="container topbar">
+      <ul class="contact_details">
+        <li class="slogan">ul. Zacisze 16/1 Kraków</li>
+      </ul>
+      <ul class="contact_details contact_details_right">
+        <li class="phone">
+          <a href="tel:+48692922926" class="mobile-contact-item">
+            <span class="phone-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C11.3 21.02 2.98 12.7 2.98 2.99a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58.13.35.05.75-.24 1.02l-2.2 2.2z"/></svg>
+            </span>
+            692 922 926
+          </a>
+        </li>
+        <li class="mobile-contact-item">
+          <a href="mailto:harmonia.sibo@gmail.com">harmonia.sibo@gmail.com</a>
+        </li>
+      </ul>
+
+      <ul class="social">
+        <li><a href="https://www.facebook.com/karolina.bierlit" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M22 12.07C22 6.48 17.52 2 11.93 2S2 6.48 2 12.07C2 17.1 5.66 21.2 10.44 22v-7.02H7.9v-2.91h2.54V9.41c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.23.2 2.23.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.87h2.78l-.44 2.91h-2.34V22C18.34 21.2 22 17.1 22 12.07Z"/></svg></a></li>
+        <li><a href="https://www.instagram.com/bierlit.ka/" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7m5 3a5 5 0 1 1 0 10a5 5 0 0 1 0-10m0 2.2a2.8 2.8 0 1 0 0 5.6a2.8 2.8 0 0 0 0-5.6M18 6.3a1 1 0 1 1 0 2a1 1 0 0 1 0-2"/></svg></a></li>
+      </ul>
+    </div>
+  </div>
+
+
+    <nav class="main-nav" aria-label="Główna nawigacja">
+      <div class="nav-left">
+        <ul class="nav-links">
+          <li><a href="o-mnie.html">O mnie</a></li>
+          <li><a href="sibo.html">SIBO</a></li>
+          <li><a href="cennik.html">Cennik</a></li>
+          <li><a href="artykuly.html">Artykuły</a></li>
+        </ul>
+      </div>
+
+      
+      <div class="nav-center">
+        <a href="index.html" aria-label="Strona główna">
+<img class="logo" src="./img/logo.png" alt="Logo Karolina Bierlit Dietetyk Kliniczny" />
+        </a>
+      </div>
+      
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li><a href="kontakt.html">Kontakt</a></li>
+          <li><a href="sklep.html">Sklep</a></li>
+                  <li><a href="#" class="btn-green js-open-booking">Zarezerwuj badanie</a></li>
+        </ul>
+      </div>
+      
+      <button class="hamburger" aria-expanded="false" aria-controls="mobileMenu" aria-label="Otwórz menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <div class="mobile-menu-overlay" id="mobileOverlay"></div>
+
+  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-labelledby="mobileMenuTitle" aria-hidden="true">
+    <div class="mobile-menu-header">
+      <h2 id="mobileMenuTitle" style="font-size: 1.2rem; color: #2c5530;">HARMONIA</h2>
+      <button class="mobile-menu-close" aria-label="Zamknij menu"></button>
+    </div>
+    <div class="mobile-menu-content">
+      <ul class="mobile-nav-links">
+         <li><a href="index.html">Główna</a></li>
+        <li><a href="o-mnie.html">O mnie</a></li>
+        <li><a href="sibo.html">SIBO</a></li>
+        <li><a href="cennik.html">Cennik</a></li>
+        <li><a href="artykuly.html">Artykuły</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+        <li><a href="sklep.html">Sklep</a></li>
+      </ul>
+      <div class="mobile-cta-section">
+        <a href="#" class="mobile-cta-button">Zarezerwuj badanie</a>
+      </div>
+      <div class="mobile-contact">
+        <h4>Kontakt</h4>
+        <div class="mobile-contact-item"><span>Tel: <a href="tel:+48692922926">692 922 926</a></span></div>
+        <div class="mobile-contact-item"><span>Email: <a href="mailto:harmonia.sibo@gmail.com">harmonia.sibo@gmail.com</a></span></div>
+        <div class="mobile-contact-item"><address>ul. Zacisze 16/1 Kraków</address></div>
+
+        <div class="mobile-social">
+          <a href="https://www.facebook.com/karolina.bierlit" aria-label="Facebook">F</a>
+          <a href="https://www.instagram.com/bierlit.ka/" aria-label="Instagram">I</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ===== Hero ===== -->
+  <section class="hero">
+    <div class="container hero__grid">
+      <div>
+        <p class="hero__subtitle">Czym jest SIBO?</p>
+        <h1 class="hero__title">SIBO (ang. Small Intestinal Bacterial Overgrowth)</h1>
+        <p>to zespół rozrostu bakteryjnego jelita cienkiego, czyli stan, w którym w jelicie cienkim znajduje się zbyt dużo bakterii. Typowe objawy to m.in.:</p>
+        <ul class="list list--check">
+          <li>wzdęcia</li>
+          <li>bóle brzucha</li>
+          <li>nudności</li>
+          <li>nadmierne gazy</li>
+          <li>biegunkę i/lub zaparcia</li>
+          <li>zaburzenie wchłaniania składników odżywczych</li>
+          <li>zmęczenie, mgła mózgowa</li>
+          <li>problemy skórne</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Types table ===== -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section__title">Wyróżniamy kilka typów przerostów bakteryjnych</h2>
+      <div class="table-wrap">
+        <table class="table">
+          <caption class="sr-only">Typy SIBO/IMO i charakterystyczne objawy</caption>
+          <thead>
+            <tr>
+              <th scope="col">przerost wodorowy (SIBO)</th>
+              <th scope="col">przerost metanowy (IMO)</th>
+              <th scope="col">przerost wodorowo‑metanowy</th>
+              <th scope="col">przerost siarkowodorowy</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>dominują biegunki, wzdęcia, gazy</td>
+              <td>dominują zaparcia, bóle brzucha, wzdęcia</td>
+              <td>typ wypróżnień bywa naprzemienny — biegunki i zaparcia</td>
+              <td>dominują biegunki oraz gazy o nieprzyjemnym zapachu</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Risk + Co‑morbidities ===== -->
+  <section class="section" id="ryzyko">
+    <div class="container grid-2">
+      <article class="card">
+        <h2 class="section__title" style="margin-bottom:8px">Kto jest w grupie ryzyka SIBO / IMO?</h2>
+        <ul class="list list--check">
+          <li>Zaburzenia motoryki jelit (np. po infekcjach, w IBS, po operacjach)</li>
+          <li>Uszkodzenia anatomiczne — zwężenia, zrosty, uchyłki jelita cienkiego</li>
+          <li>Niedokwasota żołądka — m.in. przy długotrwałym stosowaniu IPP</li>
+          <li>Choroby przewlekłe: cukrzyca, twardzina układowa, choroby tarczycy</li>
+          <li>Leki: IPP, opioidy, antybiotyki</li>
+          <li>Stres i zaburzenia osi mózg–jelita</li>
+        </ul>
+      </article>
+      <aside class="card">
+        <h3 style="margin-top:0;color:var(--brand-700)">Niektóre problemy zdrowotne mogą współwystępować z SIBO lub IMO, będą to m.in.:</h3>
+        <ul class="list list--check">
+          <li>celiakia</li>
+          <li>infekcje pasożytnicze</li>
+          <li>Helicobacter pylori</li>
+          <li>endometrioza</li>
+          <li>choroby zapalne jelit</li>
+          <li>niedo-/nadczynność tarczycy</li>
+            <li>Hashimoto</li>
+        </ul>
+        <p><strong>Leczenie</strong> powinno być kompleksowe i przyczynowe —  wieloetapowe i
+zindywidualizowane, ponieważ celem leczenia nie jest tylko eliminacja bakterii, ale też
+usunięcie przyczyny powstania SIBO / IMO, poprawa motoryki jelit, wsparcie
+przywracania równowagi w mikrobiomie jelit oraz zapobieganie nawrotom.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ===== Test flow ===== -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section__title">Jak wygląda badanie w kierunku SIBO / IMO?</h2>
+      <div class="grid-3">
+        <div class="card">
+          <h3 style="margin-top:0">Sprzęt i czas</h3>
+          <p>Test wodorowo - metanowy wykonywany jest na wysokiej jakości Analizatorze Quintron
+BreathTracker S.C., którego działanie oparte jest o chromatografię gazową.</p>
+<p>Test trwa 3 godziny. Badanie jest nieinwazyjne i bezbolesne, polega na pobieraniu
+próbek oddechowych od pacjenta, które potem są analizowane pod kątem zawartości
+metanu i wodoru. Próbki dodatkowo podlegają filtracji, a wynik korekcie dwutlenku
+węgla. Procedura filtracji oraz korekty zwiększa wiarygodność uzyskanego wyniku.</p>
+        </div>
+        <div class="card">
+          <h3 style="margin-top:0">Przebieg badania:</h3>
+          <ol>
+            <li>badanie rozpoczyna się od pobrania próbki bazowej, dzięki której jesteśmy w stanie
+zweryfikować przygotowanie pacjenta do badania.</li>
+            <li>następnie próbka bazowa jest analizowana , jeżeli pomiar wodoru mieści się w
+granicach normy, to świadczy to o dobrym przygotowaniu pacjenta, więc możemy
+kontynuować badanie</li>
+            <li> pacjent dostaje do wypicia płyn, w którym znajduje się odpowiedni cukier (najczęściej
+laktuloza lub glukoza).</li>
+<li>po wypiciu płynu przez pacjenta czekamy 20 minut i pobieramy kolejną próbkę
+oddechową</li>
+<li>cała procedura jest powtarzana w odstępach czasowych: 20, 40, 60, 80, 90, 100, 120,
+140, 160, 180 minucie (prawidłowo przeprowadzone badanie powinno zawierać pomiar
+w 90 minucie)</li>
+          </ol>
+        </div>
+        <div class="card">
+          <h3 style="margin-top:0">wynik testu wodorowo - metanowego jest dostępny od razu po badaniu</h3>
+          <p>wynik badania omawiamy po pobraniu i przeanalizowaniu ostatniej próbki oddechowej,
+zostanie przedstawiona dokładna interpretacja badania</p>
+<p>wynik testu drukujemy i dodatkowo przesyłamy na adres mailowy wraz z zaleceniami
+dotyczącymi leczenia oraz diety</p>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container mt-4">
+    <h2>Przygotowanie do badania</h2>
+    <p>Przygotowanie do testu wodorowo - metanowego jest kluczowe dla wiarygodności
+wyniku. Odpowiednie przygotowanie obejmuje odstawienie leków, modyfikację diety,
+ograniczenie niektórych czynności oraz precyzyjne przestrzeganie zaleceń na kilka dni
+przed testem.</p>
+
+    <h3>4 tygodnie przed badaniem:</h3>
+    <ul class="tick-list">
+      <li>Nie przyjmuj antybiotyków</li>
+      <li>Nie wykonuj kolonoskopii, radiografii, hydrokolonoterapii, ileoskopii, fluoroskopii, enteroklizii</li>
+    </ul>
+
+    <h3>2 tygodnie przed badaniem:</h3>
+    <ul class="tick-list">
+      <li>Oodstaw leki: Berberyna, Nystatyna, Fluconazole, Furaginum, Pyrantelum, Zentel</li>
+      <li>Nie wykonuj tomografii z kontrastem</li>
+    </ul>
+
+    <h3>1 tydzień przed badaniem:</h3>
+    <ul class="tick-list">
+      <li>nie przyjmuj probiotyków !</li>
+      <li>nie jedz produktów kiszonych (ogórki kiszone, kapusta kiszona, kimchi)</li>
+      <li>Onie przyjmuj suplementów z błonnikiem (inulina, GOS, FOS)</li>
+      <li>nie przyjmuj środków przeczyszczających (np. senes, cascara)</li>
+      <li>nie przyjmuj leków prokinetycznych (np. itopryd, metoklopramid, prukalopryd)</li>
+      <li>odstaw leki: Tribux, Simetikon, Piołun, Tributron</li>
+    </ul>
+
+    <h3>3 dni przed badaniem:</h3>
+    <ul class="tick-list">
+      <li>nie wykonuj lewatywy</li>
+      <li>nie spożywaj alkoholu</li>
+      <li>odstaw leki: Debretin, Debridat, Iberogast, Telfexo, Orungal, Essentiale Forte,
+Metex, Stoperan, Gaviscon, Esoxx One, Aciclovirum, Gastrobonisol, Rapacholin,
+Duspatalin, Zirid, Ircolon, Makrogole, Flucofast, Meteospasmyl, Forlax,
+Cholestone, Proursan, Xenna, Resolor, Prokit</li>
+      <li>nodstaw inhibitory pompy protonowej (IPP) np. Polprazol, Dexilant, Nolpaza,
+Controloc</li>
+    </ul>
+
+ <h3>2 dni przed badaniem:</h3>
+    <ul class="tick-list">
+      <li>odstaw leki: Trittico, Zoloft</li>
+      <li>odstaw wszystkie suplementy diety, zioła, minerały, witaminy</li>
+      <li>rozpocznij dietę przygotowawczą (dwudniowa dieta przygotowawcza wskazana
+jest w przypadku zaparć ! jeżeli zaparcia się nie pojawiają, to jeden dzień diety
+przygotowawczej będzie wystarczający)</li>
+      <li>odstaw leki: Aspiryna, Paracetamol, Ibuprofen, Pyralgina, Węgiel aktywowany,
+Verdin, adaptogeny, Enzymy trawienne, Colostrum, Debutir, Butiner, Enterogel,
+Structum, Iporel, Bisoratio, Dulsevia, Ulgix, Nospa, Poltram Combo, Valused,
+Ulgastran, Encorton, Skopolan, Cortiment, Auroverin, Megapar, Espumisan,
+Anapran, Heviran, NO-IBS, Macmiror, DicloDuo</li>
+    </ul>
+
+    <h3>1 dzień przed badaniem:</h3>
+    <ul class="tick-list">
+      <li>rozpocznij dietę przygotowawczą (pod warunkiem, że nie występują u Ciebie
+zaparcia, jeżeli zaparcia pojawiają się to dieta musi trwać dwa dni)</li>
+      <li>odstaw kawę (może pojawić się jedna kawa bez mleka i bez cukru, maksymalnie
+do południa)</li>
+      <li>odstaw leki: Apap, Persen, Tran, Pramolan, Dutilox, Servenon, Diosmina, Dutilox,
+Spironol, Protifar, Warfin, Nasomentin, Flomidan, Singulair, Milurit,
+Cyclo-Progynova, Feroplex, Metformina (Siofor, Glucophage)</li>
+ <li>unikaj intensywnej aktywności fizycznej</li>
+    </ul>
+
+    <h3>12 godzin przed badaniem:</h3>
+    <ul class="tick-list">
+      <li>bądź na czczo (możesz pić wodę niegazowaną)</li>
+      <li>nie pal papierosów</li>
+       <li>unikaj aktywności fizycznej</li>
+    </ul>
+
+    <h3>W dniu badania:</h3>
+    <ul class="tick-list">
+      <li>bądź na czczo (można wypić 250 ml wody niegazowanej godzinę przed testem)</li>
+      <li>unikaj intensywnej aktywności fizycznej</li>
+      <li>nie pal papierosów</li>
+        <li>rano przed badaniem umyj zęby i język</li>
+          <li>jeżeli używasz protezy, to niewskazane będzie używanie kleju do protez</li>
+            <li>nie przyjmuj przed badaniem: Eutyrox, Letrox, Acard, Regulon, Aspargin - leki
+można przyjąć po badaniu</li>
+              <li>weź ze sobą szczoteczkę i pastę do zębów</li>
+    </ul>
+
+    <h3>W trakcie badania:</h3>
+    <p>postaraj się nie pić wody</p>
+     <p>nie jedz</p>
+      <p>nie spaceruj</p>
+       <p>nie śpij</p>
+       <p>czytaj książki, oglądaj filmy, zrelaksuj się 🙂</p>
+
+  </section>
+
+  <section class="container mt-4">
+    <h2>Dieta przygotowawcza na 1 lub 2 dni przed badaniem</h2>
+    <p>Dozwolone produkty:</p>
+    <ul class="checklist">
+      <li>mięso (kurczak, indyk, wołowina) - pieczone, gotowane (bez panierki)</li>
+      <li>ryby - pieczone, gotowane (bez panierki)</li>
+      <li>jajka (gotowane na miękko, na twardo, jajecznica)</li>
+      <li>ryż (biały, jaśminowy, basmati) - max. 50 g w pierwszej połowie dnia (jeżeli Twoja
+dieta trwa dwa dni, to ryż może się pojawić tylko w pierwszym dniu
+przygotowawczym)</li>
+      <li>rosół (sam wywar z mięsa ! nie wolno dodawać warzyw !)</li>
+      <li>olej, oliwa z oliwek</li>
+      <li>sól, pieprz</li>
+      <li>woda niegazowana i krótko parzona herbata bez cukru, bez cytryny i bez innych
+dodatków</li>
+ <li>na diecie wegańskiej można zjeść pół kostki tofu naturalnego</li>
+    </ul>
+    <p><strong>Wszystkie inne produkty poza wymienionymi powyżej są niedozwolone na diecie
+przygotowawczej do testu w kierunku SIBO / IMO !</strong> Nawet mała ilość produktu
+niedozwolonego (np. warzywa, owoce, pieczywo) może zaburzyć wynik badania i
+wpłynąć na wiarygodność testu ! Proszę, zapoznaj się z dietą i utrzymaj ją, jest to bardzo
+ważny element badania.</p>
+  </section>
+
+  <!-- ===== Contraindications ===== -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section__title">Przeciwwskazania do badania</h2>
+      <div class="grid-2">
+        <div class="">
+          <p><strong>Bezwzględne:</strong> wrodzona nietolerancja fruktozy.</p>
+          <p><strong>Względne:</strong> kolonoskopia < 4 tyg., radiografia, ileostomia, hipoglikemia poposiłkowa, antybiotyki < 4 tyg. (poza terapią w kierunku SIBO/IMO).</p>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+<footer id="contact">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Polityka cookies</h4>
+        <p>Polityka prywatności danych osobowych (RODO)</p>
+      </div>
+      <div class="footer-section">
+        <h4>Kontakt</h4>
+        <p> <a href="mailto:harmonia.sibo@gmail.com">harmonia.sibo@gmail.com</a></p>
+        <p><a href="tel:+48692922926">📞 692 922 926 </a></p>
+      </div>
+      <div class="footer-section">
+        <h4>Godziny</h4>
+        <p>Pn–Pt 8:00–20:00, Sob 9:00–15:00</p>
+      </div>
+    </div>
+    <div class="footer-bottom"><p>&copy; 2025 Karolina Bierlit — aktualizacja 2025-08-09 14:12</p></div>
+  </div>
+</footer>
+
+  <!-- ===== Booking modal (IDs kept for JS compatibility) ===== -->
+  <div id="bookingModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="bookingTitle">
+    <div class="modal__content" role="document">
+      <div class="modal__head">
+        <button class="modal__close" type="button" aria-label="Zamknij">&times;</button>
+        <h2 id="bookingTitle" style="margin:0">Umów wizytę</h2>
+        <p style="margin:.25rem 0 0">Wybierz termin konsultacji dietetycznej</p>
+      </div>
+      <div class="modal__body">
+        <form class="form" id="bookingForm" novalidate>
+          <div class="row">
+            <div class="field">
+              <label for="firstName">Imię *</label>
+              <input class="input" type="text" id="firstName" name="firstName" required autocomplete="given-name">
+            </div>
+            <div class="field">
+              <label for="lastName">Nazwisko *</label>
+              <input class="input" type="text" id="lastName" name="lastName" required autocomplete="family-name">
+            </div>
+          </div>
+          <div class="row">
+            <div class="field">
+              <label for="email">Email *</label>
+              <input class="input" type="email" id="email" name="email" required autocomplete="email">
+            </div>
+            <div class="field">
+              <label for="phone">Telefon *</label>
+              <input class="input" type="tel" id="phone" name="phone" required autocomplete="tel">
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Wybierz usługę *</label>
+            <div class="service-grid" id="serviceOptions">
+              <label class="service">
+                <input type="radio" name="service" value="sibo" />
+                <div>
+                  <div class="service__title">Badanie oddechowe SIBO</div>
+                  <div class="muted">350 zł • 180 min</div>
+                </div>
+              </label>
+              <label class="service">
+                <input type="radio" name="service" value="consultation" />
+                <div>
+                  <div class="service__title">Konsultacja dietetyczna</div>
+                  <div class="muted">150 zł • 90 min</div>
+                </div>
+              </label>
+              <label class="service">
+                <input type="radio" name="service" value="followup" />
+                <div>
+                  <div class="service__title">Wizyta kontrolna</div>
+                  <div class="muted">100 zł • 45 min</div>
+                </div>
+              </label>
+              <label class="service">
+                <input type="radio" name="service" value="sports" />
+                <div>
+                  <div class="service__title">Żywienie sportowców</div>
+                  <div class="muted">180 zł • 90 min</div>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label for="appointmentDate">Wybierz datę *</label>
+              <input class="input" type="text" id="appointmentDate" name="appointmentDate" readonly required>
+            </div>
+            <div class="field">
+              <label>Wybierz godzinę *</label>
+              <div class="slots" id="timeSlots"></div>
+              <input type="hidden" id="selectedTime" name="selectedTime" required>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="notes">Dodatkowe informacje</label>
+            <textarea class="textarea" id="notes" name="notes" rows="3" placeholder="Krótki opis celu wizyty..."></textarea>
+          </div>
+
+          <div class="summary" id="bookingSummary" hidden>
+            <div class="summary__row"><span>Usługa:</span><strong id="summaryService"></strong></div>
+            <div class="summary__row"><span>Data:</span><strong id="summaryDate"></strong></div>
+            <div class="summary__row"><span>Godzina:</span><strong id="summaryTime"></strong></div>
+            <div class="summary__row"><span>Cena:</span><strong id="summaryPrice"></strong></div>
+          </div>
+
+          <button type="submit" class="submit" id="submitBtn" disabled>Potwierdź rezerwację</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/air-datepicker@3.4.0/air-datepicker.js"></script>
+</body>
+</html>

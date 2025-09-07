@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Test oddechowy SIBO — diagnostyka wodorowo-metanowa." />
+  <title>Test SIBO — Dietetyk Karolina Bierlit</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/air-datepicker@3.4.0/air-datepicker.css">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+  <div id="Action_bar">
+    <div class="container topbar">
+      <ul class="contact_details">
+        <li class="slogan">ul. Zacisze 16/1 Kraków</li>
+      </ul>
+      <ul class="contact_details contact_details_right">
+        <li class="phone">
+          <a href="tel:+48692922926" class="mobile-contact-item">
+            <span class="phone-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C11.3 21.02 2.98 12.7 2.98 2.99a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58.13.35.05.75-.24 1.02l-2.2 2.2z"/></svg>
+            </span>
+            692 922 926
+          </a>
+        </li>
+        <li class="mobile-contact-item">
+          <a href="mailto:harmonia.sibo@gmail.com">harmonia.sibo@gmail.com</a>
+        </li>
+      </ul>
+
+      <ul class="social">
+        <li><a href="https://www.facebook.com/karolina.bierlit" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M22 12.07C22 6.48 17.52 2 11.93 2S2 6.48 2 12.07C2 17.1 5.66 21.2 10.44 22v-7.02H7.9v-2.91h2.54V9.41c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.23.2 2.23.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.87h2.78l-.44 2.91h-2.34V22C18.34 21.2 22 17.1 22 12.07Z"/></svg></a></li>
+        <li><a href="https://www.instagram.com/bierlit.ka/" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7m5 3a5 5 0 1 1 0 10a5 5 0 0 1 0-10m0 2.2a2.8 2.8 0 1 0 0 5.6a2.8 2.8 0 0 0 0-5.6M18 6.3a1 1 0 1 1 0 2a1 1 0 0 1 0-2"/></svg></a></li>
+      </ul>
+    </div>
+  </div>
+
+
+    <nav class="main-nav" aria-label="Główna nawigacja">
+      <div class="nav-left">
+        <ul class="nav-links">
+          <li><a href="o-mnie.html">O mnie</a></li>
+          <li><a href="sibo.html">SIBO</a></li>
+          <li><a href="cennik.html">Cennik</a></li>
+          <li><a href="artykuly.html">Artykuły</a></li>
+        </ul>
+      </div>
+
+      
+      <div class="nav-center">
+        <a href="index.html" aria-label="Strona główna">
+<img class="logo" src="./img/logo.png" alt="Logo Karolina Bierlit Dietetyk Kliniczny" />
+        </a>
+      </div>
+      
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li><a href="kontakt.html">Kontakt</a></li>
+          <li><a href="sklep.html">Sklep</a></li>
+                  <li><a href="#" class="btn-green js-open-booking">Zarezerwuj badanie</a></li>
+        </ul>
+      </div>
+      
+      <button class="hamburger" aria-expanded="false" aria-controls="mobileMenu" aria-label="Otwórz menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <div class="mobile-menu-overlay" id="mobileOverlay"></div>
+
+  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-labelledby="mobileMenuTitle" aria-hidden="true">
+    <div class="mobile-menu-header">
+      <h2 id="mobileMenuTitle" style="font-size: 1.2rem; color: #2c5530;">HARMONIA</h2>
+      <button class="mobile-menu-close" aria-label="Zamknij menu"></button>
+    </div>
+    <div class="mobile-menu-content">
+      <ul class="mobile-nav-links">
+         <li><a href="index.html">Główna</a></li>
+        <li><a href="o-mnie.html">O mnie</a></li>
+        <li><a href="sibo.html">SIBO</a></li>
+        <li><a href="cennik.html">Cennik</a></li>
+        <li><a href="artykuly.html">Artykuły</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+        <li><a href="sklep.html">Sklep</a></li>
+      </ul>
+      <div class="mobile-cta-section">
+        <a href="#" class="mobile-cta-button">Zarezerwuj badanie</a>
+      </div>
+      <div class="mobile-contact">
+        <h4>Kontakt</h4>
+        <div class="mobile-contact-item"><span>Tel: <a href="tel:+48692922926">692 922 926</a></span></div>
+        <div class="mobile-contact-item"><span>Email: <a href="mailto:harmonia.sibo@gmail.com">harmonia.sibo@gmail.com</a></span></div>
+        <div class="mobile-contact-item"><address>ul. Zacisze 16/1 Kraków</address></div>
+
+        <div class="mobile-social">
+          <a href="https://www.facebook.com/karolina.bierlit" aria-label="Facebook">F</a>
+          <a href="https://www.instagram.com/bierlit.ka/" aria-label="Instagram">I</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+<main id="main">
+  <section class="page-hero">
+  <div class="container hero-flex">
+    <div class="hero-text">
+      <h1>Kontakt</h1>
+      <p>Umów wizytę lub napisz do nas.</p>
+    </div>
+    <div class="hero-banner">
+      <a href="https://www.znanylekarz.pl/karolina-bierlit/dietetyk/krakow" target="_blank" rel="noopener">
+       <span class="navbar-brand p-0 d-none d-lg-inline-block">
+			<svg width="210" height="34" viewBox="0 0 210 34" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMid meet"><path d="M198.468 11.181v3.035h6.945l-7.368 10.732v2.207h11.955v-3.035h-7.626l7.396-10.699v-2.24h-11.301zm-10.863 0v15.973h3.644v-7.992c0-2.005 1.53-4.215 4.862-4.866v-3.354c-2.288.126-4.253 1.634-5.059 2.811h-.033l-.258-2.572h-3.155zm-14.353-.309c1.583-.131 3.3-.17 4.958-.17 3.906 0 6.237 1.51 6.237 5.777v10.675h-3.276l-.163-1.598h-.043c-1.123 1.21-2.755 1.917-4.845 1.917-2.768 0-4.967-1.793-4.967-5.345 0-3.304 2.755-6.381 9.651-4.917v-.962c0-1.904-1.116-2.436-3.315-2.436-1.35 0-2.495.091-4.236.24v-3.182zm7.551 8.867c-2.921-.743-5.843.17-5.843 2.428 0 1.498.994 2.378 2.476 2.312 1.168-.052 2.454-.57 3.367-1.379v-3.361zm-19.878 1.652c.463-.296.991-.626 1.487-1.021l3.999 6.784h4.098l-5.387-9.123c1.983-1.943 3.602-4.216 4.957-6.85h-3.867c-1.355 2.404-3.272 4.644-5.288 6.356v-12.746l-3.643.422v21.94h3.643v-5.764zm-20.426-2.174v-.065c0-4.912 2.391-8.449 7.336-8.449 4.585 0 6.714 2.653 6.714 8.22 0 .589-.041 1.403-.105 2.003h-10.123c.262 2.25 1.573 3.594 4.264 3.594 1.703 0 3.303-.159 4.786-.353v3.051c-1.666.261-3.08.417-4.882.417-5.24 0-7.991-2.62-7.991-8.417zm3.766-1.008h6.583c0-2.499-.655-4.472-3.111-4.472-2.554 0-3.406 2.105-3.471 4.472zm-16.478-13.417v22.362h11.815v-3.616h-7.834v-18.746h-3.981zm-16.215 6.389c1.153 4.545 3.853 13.114 5.264 16.452-.912 2.063-2.387 3.106-5.165 2.951v2.865c5.997.804 7.628-3.66 8.76-6.295 1.132-2.636 4.018-11.428 5.204-15.973h-3.82c-.659 2.997-2.305 8.892-3.162 11.889h-.066c-.889-2.964-2.536-8.859-3.162-11.889h-3.853zm-15.893 0v15.973h3.644v-8.401c0-2.543 1.985-4.577 3.765-4.702 1.964-.138 2.964.879 2.964 3.476v9.626h3.644v-10.377c0-4.069-1.87-6.075-5.637-6.075-2.231 0-4.075 1.259-4.953 2.636h-.043c-.065-.571-.212-2.156-.212-2.156h-3.171zm-14.353-.309c1.583-.131 3.3-.17 4.958-.17 3.906 0 6.237 1.51 6.237 5.777v10.675h-3.276l-.163-1.598h-.043c-1.123 1.21-2.755 1.917-4.845 1.917-2.768 0-4.967-1.793-4.967-5.345 0-3.304 2.755-6.381 9.65-4.917v-.962c0-1.904-1.116-2.436-3.315-2.436-1.35 0-2.495.091-4.236.24v-3.182zm7.551 8.867c-2.921-.743-5.843.17-5.843 2.428 0 1.498.994 2.378 2.476 2.312 1.168-.052 2.454-.57 3.367-1.379v-3.361zm-26.023-8.557v15.973h3.644v-8.401c0-2.543 1.985-4.577 3.765-4.702 1.964-.138 2.964.879 2.964 3.476v9.626h3.644v-10.377c0-4.069-1.87-6.075-5.637-6.075-2.231 0-4.075 1.259-4.953 2.636h-.043c-.065-.571-.212-2.156-.212-2.156h-3.171zm-17.541-6.389v3.616h9.356l-9.945 15.657v3.089h15.121v-3.616h-10.086l9.92-15.727v-3.019h-14.366zm-26.71 21.027l5.272 6.127 5.255-3.818-5.13-8.488c-2.317 1.429-4.589 4.199-5.396 6.179zm-7.578 6.118c4.332-8.834 12.605-15.378 22.519-17.331l-2.015-6.206c-12.028 1.358-22.261 8.648-27.737 18.884l7.233 4.652zm1.579-21.069l-10.598-2.495-2.006 6.188 7.358 3.106c1.509-1.526 3.196-2.857 5.05-3.994 2.512-1.544 4.705-2.566 8.433-3.844l-.826-9.828h-6.498l-.914 10.868z" fill="#6BCBBD"/></svg>
+		
+    
+    
+    </span>
+      </a>
+    </div>
+  </div>
+</section>
+
+  <section class="container mt-4 two-col">
+    <form class="card" id="contactForm">
+      <label>Imię i nazwisko<input required name="name" /></label>
+      <label>Adres e‑mail<input required type="email" name="email" /></label>
+      <label>Telefon<input name="phone" /></label>
+      <label>Wiadomość<textarea required name="message" rows="6"></textarea></label>
+      <button class="submit-btn" type="submit">Wyślij</button>
+      <p class="muted" id="contactOk" hidden>Dziękujemy! Skontaktujemy się wkrótce.</p>
+    </form>
+    <div class="card">
+      <h2>Dane kontaktowe</h2>
+      <p><strong>HARMONIA</strong><br>ul. Zacisze 16/1<br>31-156 Kraków</p>
+      <p>Tel.: <a href="tel:+48692922926">692 922 926</a></p>
+      <p>E-mail: <a href="mailto:harmonia.sibo@gmail.com">harmonia.sibo@gmail.com</a></p>
+      <iframe class="map" title="Mapa" src="https://maps.google.com/maps?q=Zacisze%2016%2F1%2C%20Krak%C3%B3w&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
+    </div>
+  </section>
+</main>
+<footer class="site-footer"><div class="container footer-bottom"><p>© 2025 Dietetyk Karolina Bierlit</p></div></footer>
+
+<!-- Booking Modal -->
+<div id="bookingModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="bookingTitle">
+  <div class="modal-content" role="document">
+    <div class="modal-header">
+      <button class="close" aria-label="Zamknij" type="button">&times;</button>
+      <h2 id="bookingTitle">Umów wizytę</h2>
+      <p>Wybierz termin konsultacji dietetycznej</p>
+    </div>
+    <div class="modal-body">
+      <form class="booking-form" id="bookingForm" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="firstName">Imię *</label>
+            <input type="text" id="firstName" name="firstName" required autocomplete="given-name">
+          </div>
+          <div class="form-group">
+            <label for="lastName">Nazwisko *</label>
+            <input type="text" id="lastName" name="lastName" required autocomplete="family-name">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" required autocomplete="email">
+          </div>
+          <div class="form-group">
+            <label for="phone">Telefon *</label>
+            <input type="tel" id="phone" name="phone" required autocomplete="tel">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Wybierz usługę *</label>
+          <div class="service-options" id="serviceOptions">
+            <label class="service-option">
+              <input type="radio" name="service" value="sibo" />
+              <div class="service-title">Badanie oddechowe SIBO</div>
+              <div class="service-price">350 zł (180 min)</div>
+            </label>
+            <label class="service-option">
+              <input type="radio" name="service" value="consultation" />
+              <div class="service-title">Konsultacja dietetyczna</div>
+              <div class="service-price">150 zł (90 min)</div>
+            </label>
+            <label class="service-option">
+              <input type="radio" name="service" value="followup" />
+              <div class="service-title">Wizyta kontrolna</div>
+              <div class="service-price">100 zł (45 min)</div>
+            </label>
+            <label class="service-option">
+              <input type="radio" name="service" value="sports" />
+              <div class="service-title">Żywienie sportowców</div>
+              <div class="service-price">180 zł (90 min)</div>
+            </label>
+          </div>
+        </div>
+        <div class="date-time-row">
+          <div class="form-group">
+            <label for="appointmentDate">Wybierz datę *</label>
+            <input type="text" id="appointmentDate" name="appointmentDate" readonly required>
+          </div>
+          <div class="form-group">
+            <label>Wybierz godzinę *</label>
+            <div class="time-slots" id="timeSlots"></div>
+            <input type="hidden" id="selectedTime" name="selectedTime" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="notes">Dodatkowe informacje</label>
+          <textarea id="notes" name="notes" rows="3" placeholder="Krótki opis celu wizyty..."></textarea>
+        </div>
+        <div class="booking-summary" id="bookingSummary" hidden>
+          <div class="summary-title">Podsumowanie rezerwacji:</div>
+          <div class="summary-item"><span>Usługa:</span><span id="summaryService"></span></div>
+          <div class="summary-item"><span>Data:</span><span id="summaryDate"></span></div>
+          <div class="summary-item"><span>Godzina:</span><span id="summaryTime"></span></div>
+          <div class="summary-item"><span>Cena:</span><span id="summaryPrice"></span></div>
+        </div>
+        <button type="submit" class="submit-btn" id="submitBtn" disabled>Potwierdź rezerwację</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/air-datepicker@3.4.0/air-datepicker.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
+
+</body></html>

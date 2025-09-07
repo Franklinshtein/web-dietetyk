@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Test oddechowy SIBO — diagnostyka wodorowo-metanowa." />
+  <title>Test SIBO — Dietetyk Karolina Bierlit</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/air-datepicker@3.4.0/air-datepicker.css">
+  
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+  <div id="Action_bar">
+    <div class="container topbar">
+      <ul class="contact_details">
+        <li class="slogan">ul. Zacisze 16/1 Kraków</li>
+      </ul>
+      <ul class="contact_details contact_details_right">
+        <li class="phone">
+          <a href="tel:+48692922926" class="mobile-contact-item">
+            <span class="phone-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C11.3 21.02 2.98 12.7 2.98 2.99a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58.13.35.05.75-.24 1.02l-2.2 2.2z"/></svg>
+            </span>
+            692 922 926
+          </a>
+        </li>
+        <li class="mobile-contact-item">
+          <a href="mailto:harmonia.sibo@gmail.com">harmonia.sibo@gmail.com</a>
+        </li>
+      </ul>
+
+      <ul class="social">
+        <li><a href="https://www.facebook.com/karolina.bierlit" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M22 12.07C22 6.48 17.52 2 11.93 2S2 6.48 2 12.07C2 17.1 5.66 21.2 10.44 22v-7.02H7.9v-2.91h2.54V9.41c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.23.2 2.23.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.87h2.78l-.44 2.91h-2.34V22C18.34 21.2 22 17.1 22 12.07Z"/></svg></a></li>
+        <li><a href="https://www.instagram.com/bierlit.ka/" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7m5 3a5 5 0 1 1 0 10a5 5 0 0 1 0-10m0 2.2a2.8 2.8 0 1 0 0 5.6a2.8 2.8 0 0 0 0-5.6M18 6.3a1 1 0 1 1 0 2a1 1 0 0 1 0-2"/></svg></a></li>
+      </ul>
+    </div>
+  </div>
+
+
+    <nav class="main-nav" aria-label="Główna nawigacja">
+      <div class="nav-left">
+        <ul class="nav-links">
+          <li><a href="o-mnie.html">O mnie</a></li>
+          <li><a href="sibo.html">SIBO</a></li>
+          <li><a href="cennik.html">Cennik</a></li>
+          <li><a href="artykuly.html">Artykuły</a></li>
+        </ul>
+      </div>
+
+      
+      <div class="nav-center">
+        <a href="index.html" aria-label="Strona główna">
+<img class="logo" src="./img/logo.png" alt="Logo Karolina Bierlit Dietetyk Kliniczny" />
+        </a>
+      </div>
+      
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li><a href="kontakt.html">Kontakt</a></li>
+          <li><a href="sklep.html">Sklep</a></li>
+                  <li><a href="#" class="btn-green js-open-booking">Zarezerwuj badanie</a></li>
+        </ul>
+      </div>
+      
+      <button class="hamburger" aria-expanded="false" aria-controls="mobileMenu" aria-label="Otwórz menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <div class="mobile-menu-overlay" id="mobileOverlay"></div>
+
+  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-labelledby="mobileMenuTitle" aria-hidden="true">
+    <div class="mobile-menu-header">
+      <h2 id="mobileMenuTitle" style="font-size: 1.2rem; color: #2c5530;">HARMONIA</h2>
+      <button class="mobile-menu-close" aria-label="Zamknij menu"></button>
+    </div>
+    <div class="mobile-menu-content">
+      <ul class="mobile-nav-links">
+         <li><a href="index.html">Główna</a></li>
+        <li><a href="o-mnie.html">O mnie</a></li>
+        <li><a href="sibo.html">SIBO</a></li>
+        <li><a href="cennik.html">Cennik</a></li>
+        <li><a href="artykuly.html">Artykuły</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+        <li><a href="sklep.html">Sklep</a></li>
+      </ul>
+      <div class="mobile-cta-section">
+        <a href="#" class="mobile-cta-button">Zarezerwuj badanie</a>
+      </div>
+      <div class="mobile-contact">
+        <h4>Kontakt</h4>
+        <div class="mobile-contact-item"><span>Tel: <a href="tel:+48692922926">692 922 926</a></span></div>
+        <div class="mobile-contact-item"><span>Email:  <a href="mailto:harmonia.sibo@gmail.com">harmonia.sibo@gmail.com</a></span></div>
+        <div class="mobile-contact-item"><address>ul. Zacisze 16/1 Kraków</address></div>
+
+        <div class="mobile-social">
+          <a href="https://www.facebook.com/karolina.bierlit" aria-label="Facebook">F</a>
+          <a href="https://www.instagram.com/bierlit.ka/" aria-label="Instagram">I</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<main>
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1>Harmonia — miejsce, w którym odnajdziesz spokój jelit</h1>
+          <p>Spersonalizowana opieka dietetyczna w Krakowie: diagnostyka SIBO, dietoterapia, plany żywieniowe.</p>
+          <ul class="hero-list">
+            <li>Na czym polega test SIBO</li>
+            <li>Przygotowanie do badania</li>
+            <li>Przebieg badania</li>
+            <li>Przeciwwskazania</li>
+            <li>Przykładowa dieta</li>
+          </ul>
+          <div class="hero-ctas">
+            <a href="sibo.html" class="cta-button">Dowiedz się o SIBO</a>
+            <a href="#" class="cta-button outline js-open-booking">Zarezerwuj badanie</a>
+          </div>
+        </div>
+        <div class="hero-image"><img class="foto" src="./img/sibo.png" alt="Ilustracja SIBO" /></div>
+      </div>
+    </div>
+  </section>
+
+
+
+    <section id="conditions" class="conditions-section">
+            <div class="container">
+                <h2 class="section-title">Przypadłości</h2>
+                <h3 class="section-subtitle">Czym się Zajmujemy</h3>
+                <div class="conditions-grid">
+                    <div class="condition-item">Cukrzyca typu 1 i 2</div>
+                    <div class="condition-item">Otyłość i nadwaga</div>
+                    <div class="condition-item">Zaburzenia odżywiania</div>
+                    <div class="condition-item">Problemy z trawieniem</div>
+                    <div class="condition-item">Zespół jelita drażliwego</div>
+                    <div class="condition-item">Choroby wątroby</div>
+                    <div class="condition-item">Wysokie cholesterol</div>
+                    <div class="condition-item">Nadciśnienie tętnicze</div>
+                    <div class="condition-item">Alergie pokarmowe</div>
+                    <div class="condition-item">Nietolerancje pokarmowe</div>
+                    <div class="condition-item">Choroba trzewna</div>
+                    <div class="condition-item">Choroba wrzodowa</div>
+                    <div class="condition-item">Refluks żołądkowo-przełykowy</div>
+                    <div class="condition-item">Zaburzenia hormonalne</div>
+                    <div class="condition-item">PCOS</div>
+                    <div class="condition-item">Zaburzenia tarczycy</div>
+                    <div class="condition-item">Osteoporoza</div>
+                    <div class="condition-item">Niedożywienie</div>
+                    <div class="condition-item">Problemy z koncentracją</div>
+                    <div class="condition-item">Chroniczne zmęczenie</div>
+                    <div class="condition-item">Problemy skórne</div>
+                    <div class="condition-item">Zaparcia</div>
+                    <div class="condition-item">Wzdęcia</div>
+                    <div class="condition-item">Bóle brzucha</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about-section">
+            <div class="container">
+                <h2 class="section-title">Celem Harmonii jest zadbanie o każdego pacjenta w kompleksowy sposób</h2>
+                <h3 class="section-subtitle">Sprawdź jak mogę Ci pomóc</h3>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">🧪</div>
+                        <h3>Test wodorowo‑metanowy</h3>
+                        <p>Badanie SIBO/IMO na analizatorze QuinTron. Na czym polega test, przygotowanie, przebieg i przeciwwskazania.</p>
+                        <div><a href="sibo.html" class="cta-button outline">Dowiedz się więcej</a> <a href="#" class="cta-button js-open-booking" data-service="sibo">Umów badanie</a></div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">💬</div>
+                        <h3>Konsultacje dietetyczne</h3>
+                        <p>Indywidualny wywiad, analiza wyników, zalecenia i plan działania. Wsparcie mailowe po wizycie.</p>
+                        <div><a href="cennik.html" class="cta-button outline">Zakres i cena</a> <a href="#" class="cta-button js-open-booking" data-service="consultation">Umów wizytę</a></div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🍽️</div>
+                        <h3>Plan żywieniowy</h3>
+                        <p>Osobisty jadłospis dopasowany do stanu zdrowia, preferencji i trybu życia. Wygodne listy zakupów.</p>
+                        <div><a href="cennik.html" class="cta-button outline">Warianty i cena</a> <a href="#" class="cta-button js-open-booking" data-service="consultation">Zamów plan</a></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+
+        <section id="visit" class="visit-section">
+            <div class="container">
+
+                    </div>
+                    
+                    <div class="visit-steps">
+                        <div class="step-card">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h3>Rejestracja i wywiad wstępny</h3>
+                                <p>Po przybyciu do naszego centrum zostaniesz poproszony/a o wypełnienie ankiety zdrowotnej. Zawiera ona pytania dotyczące Twojego stylu życia, problemów zdrowotnych, leków które przyjmujesz oraz celów żywieniowych.</p>
+                                <ul>
+                                    <li>Wywiad dotyczący obecnego stanu zdrowia</li>
+                                    <li>Historia chorób w rodzinie</li>
+                                    <li>Obecne problemy zdrowotne</li>
+                                    <li>Przyjmowane leki i suplementy</li>
+                                    <li>Analiza dotychczasowych nawyków żywieniowych</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="step-card">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h3>Szczegółowa konsultacja z dietetykiem</h3>
+                                <p>Podczas konsultacji nasz specjalista przeprowadzi dokładny wywiad żywieniowy, pozna Twoje przyzwyczajenia kulinarne oraz ustali indywidualne cele terapeutyczne.</p>
+                                <ul>
+                                    <li>Analiza dotychczasowego sposobu żywienia</li>
+                                    <li>Ocena preferencji i awersji pokarmowych</li>
+                                    <li>Ustalenie celów żywieniowych</li>
+                                    <li>Edukacja żywieniowa dostosowana do potrzeb</li>
+                                    <li>Omówienie schorzeń wymagających diety specjalistycznej</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="step-card">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h3>Pomiary antropometryczne i analiza składu ciała</h3>
+                                <p>Wykonujemy profesjonalne pomiary i analizę składu ciała przy użyciu nowoczesnego sprzętu. To pozwala nam dokładnie ocenić Twój stan odżywienia.</p>
+                                <ul>
+                                    <li>Pomiar masy ciała i wzrostu</li>
+                                    <li>Analiza składu ciała (tkanka tłuszczowa, masa mięśniowa)</li>
+                                    <li>Pomiar obwodów ciała</li>
+                                    <li>Ocena stanu odżywienia</li>
+                                    <li>Określenie zapotrzebowania kalorycznego</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="step-card">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h3>Przygotowanie indywidualnego planu żywieniowego</h3>
+                                <p>Na podstawie zebranych informacji tworzymy spersonalizowany plan żywieniowy, który uwzględnia Twoje potrzeby, preferencje i ograniczenia zdrowotne.</p>
+                                <ul>
+                                    <li>Indywidualny jadłospis na 7-14 dni</li>
+                                    <li>Lista zalecanych i niezalecanych produktów</li>
+                                    <li>Przepisy kulinarne dostosowane do diety</li>
+                                    <li>Porady dotyczące przygotowywania posiłków</li>
+                                    <li>Zalecenia dotyczące suplementacji (jeśli potrzebna)</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="step-card">
+                            <div class="step-number">5</div>
+                            <div class="step-content">
+                                <h3>Omówienie planu i dalsze wsparcie</h3>
+                                <p>Dokładnie omawiamy przygotowany plan żywieniowy, odpowiadamy na Twoje pytania i ustalamy termin wizyty kontrolnej oraz sposób kontaktu w razie pytań.</p>
+                                <ul>
+                                    <li>Szczegółowe omówienie jadłospisu</li>
+                                    <li>Instrukcje dotyczące wprowadzania zmian</li>
+                                    <li>Ustalenie terminu wizyty kontrolnej</li>
+                                    <li>Możliwość kontaktu telefonicznego lub mailowego</li>
+                                    <li>Materiały edukacyjne do domu</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="visit-info">
+                        <div class="info-card">
+                            <h3>🕐 Czas trwania wizyty</h3>
+                            <p>Pierwsza wizyta trwa około 60-90 minut. Wizyty kontrolne są krótsze i trwają około 30-45 minut.</p>
+                        </div>
+                        <div class="info-card">
+                            <h3>💼 Co zabrać ze sobą?</h3>
+                            <p>Przynieś wyniki najnowszych badań laboratoryjnych, listę przyjmowanych leków oraz dzienniczek żywieniowy (jeśli prowadziłeś/aś).</p>
+                        </div>
+                        <div class="info-card">
+                            <h3>📋 Przygotowanie do wizyty</h3>
+                            <p>Przygotuj listę pytań, przemyśl swoje cele żywieniowe i bądź gotowy/a na szczerą rozmowę o swoich nawykach żywieniowych.</p>
+                        </div>
+                    </div>
+
+                    <div class="visit-cta">
+                        <h3>Gotowy/a na pierwszą wizytę?</h3>
+                        <p>Skontaktuj się z nami, aby umówić konsultację dietetyczną dostosowaną do Twoich potrzeb.</p>
+
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+</main>
+
+<footer id="contact">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Polityka cookies</h4>
+        <p>Polityka prywatności danych osobowych (RODO)</p>
+      </div>
+      <div class="footer-section">
+        <h4>Kontakt</h4>
+        <p> <a href="mailto:harmonia.sibo@gmail.com">harmonia.sibo@gmail.com</a></p>
+        <p><a href="tel:+48692922926">📞 692 922 926 </a></p>
+      </div>
+      <div class="footer-section">
+        <h4>Godziny</h4>
+        <p>Pn–Pt 8:00–20:00, Sob 9:00–15:00</p>
+      </div>
+    </div>
+    <div class="footer-bottom"><p>&copy; 2025 Karolina Bierlit — aktualizacja 2025-08-09 14:12</p></div>
+  </div>
+</footer>
+
+<!-- Booking Modal -->
+<div id="bookingModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="bookingTitle">
+  <div class="modal-content" role="document">
+    <div class="modal-header">
+      <button class="close" aria-label="Zamknij" type="button">&times;</button>
+      <h2 id="bookingTitle">Umów wizytę</h2>
+      <p>Wybierz termin konsultacji dietetycznej</p>
+    </div>
+    <div class="modal-body">
+      <form class="booking-form" id="bookingForm" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="firstName">Imię *</label>
+            <input type="text" id="firstName" name="firstName" required autocomplete="given-name">
+          </div>
+          <div class="form-group">
+            <label for="lastName">Nazwisko *</label>
+            <input type="text" id="lastName" name="lastName" required autocomplete="family-name">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" required autocomplete="email">
+          </div>
+          <div class="form-group">
+            <label for="phone">Telefon *</label>
+            <input type="tel" id="phone" name="phone" required autocomplete="tel">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Wybierz usługę *</label>
+          <div class="service-options" id="serviceOptions">
+            <label class="service-option">
+              <input type="radio" name="service" value="sibo" />
+              <div class="service-title">Badanie oddechowe SIBO</div>
+              <div class="service-price">350 zł (180 min)</div>
+            </label>
+            <label class="service-option">
+              <input type="radio" name="service" value="consultation" />
+              <div class="service-title">Konsultacja dietetyczna</div>
+              <div class="service-price">150 zł (90 min)</div>
+            </label>
+            <label class="service-option">
+              <input type="radio" name="service" value="followup" />
+              <div class="service-title">Wizyta kontrolna</div>
+              <div class="service-price">100 zł (45 min)</div>
+            </label>
+            <label class="service-option">
+              <input type="radio" name="service" value="sports" />
+              <div class="service-title">Żywienie sportowców</div>
+              <div class="service-price">180 zł (90 min)</div>
+            </label>
+          </div>
+        </div>
+        <div class="date-time-row">
+          <div class="form-group">
+            <label for="appointmentDate">Wybierz datę *</label>
+            <input type="text" id="appointmentDate" name="appointmentDate" readonly required>
+          </div>
+          <div class="form-group">
+            <label>Wybierz godzinę *</label>
+            <div class="time-slots" id="timeSlots"></div>
+            <input type="hidden" id="selectedTime" name="selectedTime" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="notes">Dodatkowe informacje</label>
+          <textarea id="notes" name="notes" rows="3" placeholder="Krótki opis celu wizyty..."></textarea>
+        </div>
+        <div class="booking-summary" id="bookingSummary" hidden>
+          <div class="summary-title">Podsumowanie rezerwacji:</div>
+          <div class="summary-item"><span>Usługa:</span><span id="summaryService"></span></div>
+          <div class="summary-item"><span>Data:</span><span id="summaryDate"></span></div>
+          <div class="summary-item"><span>Godzina:</span><span id="summaryTime"></span></div>
+          <div class="summary-item"><span>Cena:</span><span id="summaryPrice"></span></div>
+        </div>
+        <button type="submit" class="submit-btn" id="submitBtn" disabled>Potwierdź rezerwację</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/air-datepicker@3.4.0/air-datepicker.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

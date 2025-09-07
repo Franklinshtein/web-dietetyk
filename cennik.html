@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Test oddechowy SIBO — diagnostyka wodorowo-metanowa." />
+  <title>Test SIBO — Dietetyk Karolina Bierlit</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/air-datepicker@3.4.0/air-datepicker.css">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+  <div id="Action_bar">
+    <div class="container topbar">
+      <ul class="contact_details">
+        <li class="slogan">ul. Zacisze 16/1 Kraków</li>
+      </ul>
+      <ul class="contact_details contact_details_right">
+        <li class="phone">
+          <a href="tel:+48692922926" class="mobile-contact-item">
+            <span class="phone-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C11.3 21.02 2.98 12.7 2.98 2.99a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58.13.35.05.75-.24 1.02l-2.2 2.2z"/></svg>
+            </span>
+            692 922 926
+          </a>
+        </li>
+        <li class="mobile-contact-item">
+          <a href="mailto:harmonia.sibo@gmail.com">harmonia.sibo@gmail.com</a>
+        </li>
+      </ul>
+
+      <ul class="social">
+        <li><a href="https://www.facebook.com/karolina.bierlit" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M22 12.07C22 6.48 17.52 2 11.93 2S2 6.48 2 12.07C2 17.1 5.66 21.2 10.44 22v-7.02H7.9v-2.91h2.54V9.41c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.23.2 2.23.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.87h2.78l-.44 2.91h-2.34V22C18.34 21.2 22 17.1 22 12.07Z"/></svg></a></li>
+        <li><a href="https://www.instagram.com/bierlit.ka/" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7m5 3a5 5 0 1 1 0 10a5 5 0 0 1 0-10m0 2.2a2.8 2.8 0 1 0 0 5.6a2.8 2.8 0 0 0 0-5.6M18 6.3a1 1 0 1 1 0 2a1 1 0 0 1 0-2"/></svg></a></li>
+      </ul>
+    </div>
+  </div>
+
+
+    <nav class="main-nav" aria-label="Główna nawigacja">
+      <div class="nav-left">
+        <ul class="nav-links">
+          <li><a href="o-mnie.html">O mnie</a></li>
+          <li><a href="sibo.html">SIBO</a></li>
+          <li><a href="cennik.html">Cennik</a></li>
+          <li><a href="artykuly.html">Artykuły</a></li>
+        </ul>
+      </div>
+
+      
+      <div class="nav-center">
+        <a href="index.html" aria-label="Strona główna">
+<img class="logo" src="./img/logo.png" alt="Logo Karolina Bierlit Dietetyk Kliniczny" />
+        </a>
+      </div>
+      
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li><a href="kontakt.html">Kontakt</a></li>
+          <li><a href="sklep.html">Sklep</a></li>
+                  <li><a href="#" class="btn-green js-open-booking">Zarezerwuj badanie</a></li>
+        </ul>
+      </div>
+      
+      <button class="hamburger" aria-expanded="false" aria-controls="mobileMenu" aria-label="Otwórz menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <div class="mobile-menu-overlay" id="mobileOverlay"></div>
+
+  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-labelledby="mobileMenuTitle" aria-hidden="true">
+    <div class="mobile-menu-header">
+      <h2 id="mobileMenuTitle" style="font-size: 1.2rem; color: #2c5530;">HARMONIA</h2>
+      <button class="mobile-menu-close" aria-label="Zamknij menu"></button>
+    </div>
+    <div class="mobile-menu-content">
+      <ul class="mobile-nav-links">
+         <li><a href="index.html">Główna</a></li>
+        <li><a href="o-mnie.html">O mnie</a></li>
+        <li><a href="sibo.html">SIBO</a></li>
+        <li><a href="cennik.html">Cennik</a></li>
+        <li><a href="artykuly.html">Artykuły</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+        <li><a href="sklep.html">Sklep</a></li>
+      </ul>
+      <div class="mobile-cta-section">
+        <a href="#" class="mobile-cta-button">Zarezerwuj badanie</a>
+      </div>
+      <div class="mobile-contact">
+        <h4>Kontakt</h4>
+        <div class="mobile-contact-item"><span>Tel: <a href="tel:+48692922926">692 922 926</a></span></div>
+        <div class="mobile-contact-item"><span>Email: <a href="mailto:harmonia.sibo@gmail.com">harmonia.sibo@gmail.com</a></span></div>
+        <div class="mobile-contact-item"><address>ul. Zacisze 16/1 Kraków</address></div>
+
+        <div class="mobile-social">
+          <a href="https://www.facebook.com/karolina.bierlit" aria-label="Facebook">F</a>
+          <a href="https://www.instagram.com/bierlit.ka/" aria-label="Instagram">I</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1 class="page-title">Cennik</h1>
+        <p class="page-subtitle">Przejrzyste ceny bez ukrytych kosztów.</p>
+
+        <!-- Test Cards -->
+        <div class="pricing-section">
+            <div class="test-card highlighted">
+                <div class="test-info">
+                    <div class="test-name">test wodorowo - metanowy w kierunku SIBO / IMO</div>
+                    <div class="test-price">300 zł</div>
+                </div>
+                <a href="#" class="reserve-btn" onclick="reserveTest('Test SIBO/IMO')">Zarezerwuj badanie</a>
+            </div>
+
+            <div class="test-card">
+                <div class="test-info">
+                    <div class="test-name">test wodorowy w kierunku nietolerancji cukrów (fruktoza, laktoza, sorbitol)</div>
+                    <div class="test-price">160 zł</div>
+                </div>
+                <a href="#" class="reserve-btn" onclick="reserveTest('Test nietolerancji')">Zarezerwuj badanie</a>
+            </div>
+        </div>
+
+
+
+        <!-- Expandable Detailed Services -->
+        <div class="expandable">
+            <div class="expandable-header" onclick="toggleExpand('konsultacja-details')">
+                <div class="expandable-title">Konsultacja dietetyczna - szczegółowo</div>
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <div class="expandable-price">180 zł</div>
+                    <div class="expand-icon" id="konsultacja-icon">▼</div>
+                </div>
+            </div>
+            <div id="konsultacja-details" class="expandable-content">
+                <ul class="expandable-list">
+                    <li>Wstępna analiza ankiety przesłanej do pacjenta przed konsultacją</li>
+                    <li>60 minut konsultacji</li>
+                    <li>Wywiad zdrowotny i żywieniowy</li>
+                    <li>Omówienie kluczowych problemów</li>
+                    <li>Analiza wyników badań</li>
+                    <li>Indywidualne zalecenia oraz plan działania wysyłane na maila do 7 dni roboczych</li>
+                    <li>Zalecenia dotyczące żywienia, stylu życia, propozycja suplementacji</li>
+                    <li>Propozycja badań do wykonania</li>
+                    <li>Ocena dotychczasowego sposobu odżywiania</li>
+                    <li>Opieka mailowa po wizycie (do 3 maili)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="expandable">
+            <div class="expandable-header" onclick="toggleExpand('kontrolna-details')">
+                <div class="expandable-title">Konsultacja dietetyczna kontrolna</div>
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <div class="expandable-price">150 zł</div>
+                    <div class="expand-icon" id="kontrolna-icon">▼</div>
+                </div>
+            </div>
+            <div id="kontrolna-details" class="expandable-content">
+                <ul class="expandable-list">
+                    <li>45 minut konsultacji</li>
+                    <li>Ocena stanu zdrowia po pierwszej konsultacji</li>
+                    <li>Analiza wprowadzonych zmian i efektów</li>
+                    <li>Modyfikacja zaleceń pod obecny stan zdrowia</li>
+                    <li>Omówienie kluczowych problemów</li>
+                    <li>Analiza wyników badań</li>
+                    <li>Indywidualne zalecenia wysyłane na maila do 7 dni roboczych</li>
+                    <li>Opieka mailowa po wizycie (do 3 maili)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="expandable">
+            <div class="expandable-header" onclick="toggleExpand('pakiet-details')">
+                <div class="expandable-title">Pakiet współpracy na miesiąc</div>
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <div class="expandable-price">450 zł</div>
+                    <div class="expand-icon" id="pakiet-icon">▼</div>
+                </div>
+            </div>
+            <div id="pakiet-details" class="expandable-content">
+                <ul class="expandable-list">
+                    <li>60 minut konsultacji</li>
+                    <li>Wywiad zdrowotny i żywieniowy</li>
+                    <li>Omówienie kluczowych problemów</li>
+                    <li>Opieka mailowa i kontakt z pacjentem przez cały okres trwania pakietu (miesiąc)</li>
+                    <li>Analiza wyników badań</li>
+                    <li>Ustalenie planu działania</li>
+                    <li>Indywidualne zalecenia dotyczące żywienia, stylu życia i suplementacji</li>
+                    <li>Możliwość drobnych modyfikacji w zaleceniach</li>
+                    <li>Raporty na temat samopoczucia, objawów, wprowadzonych zaleceń</li>
+                    <li>Spotkanie wspierające online 20-30 minut</li>
+                    <li>Plan żywieniowy na 7 dni</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="expandable">
+            <div class="expandable-header" onclick="toggleExpand('plan2-details')">
+                <div class="expandable-title">Plan żywieniowy na dwa tygodnie</div>
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <div class="expandable-price">250 zł</div>
+                    <div class="expand-icon" id="plan2-icon">▼</div>
+                </div>
+            </div>
+            <div id="plan2-details" class="expandable-content">
+                <ul class="expandable-list">
+                    <li>Osobisty plan żywieniowy na podstawie zebranych informacji o pacjencie</li>
+                    <li>Dopasowany do danej jednostki chorobowej i zdolności trawiennych</li>
+                    <li>Uwzględnia preferencje żywieniowe i plan dnia</li>
+                    <li>Dostosowany do trybu pracy i umiejętności kulinarnych</li>
+                    <li>Uwzględnia ewentualne eliminacje produktów</li>
+                    <li>Zawiera określoną ilość posiłków (ustalonych wcześniej z pacjentem)</li>
+                    <li>Sposób przygotowania posiłków</li>
+                    <li>Lista zakupów</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="expandable">
+            <div class="expandable-header" onclick="toggleExpand('plan1-details')">
+                <div class="expandable-title">Plan żywieniowy na tydzień</div>
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <div class="expandable-price">150 zł</div>
+                    <div class="expand-icon" id="plan1-icon">▼</div>
+                </div>
+            </div>
+            <div id="plan1-details" class="expandable-content">
+                <ul class="expandable-list">
+                    <li>Osobisty plan żywieniowy na podstawie zebranych informacji o pacjencie</li>
+                    <li>Dopasowany do danej jednostki chorobowej i zdolności trawiennych</li>
+                    <li>Uwzględnia preferencje żywieniowe i plan dnia</li>
+                    <li>Dostosowany do trybu pracy i umiejętności kulinarnych</li>
+                    <li>Uwzględnia ewentualne eliminacje produktów</li>
+                    <li>Zawiera określoną ilość posiłków (ustalonych wcześniej z pacjentem)</li>
+                    <li>Sposób przygotowania posiłków</li>
+                    <li>Lista zakupów</li>
+                </ul>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 50px;">
+            <button class="book-consultation-btn" onclick="bookConsultation()">Umów konsultację</button>
+        </div>
+    </div>
+<footer id="contact">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Polityka cookies</h4>
+        <p>Polityka prywatności danych osobowych (RODO)</p>
+      </div>
+      <div class="footer-section">
+        <h4>Kontakt</h4>
+        <p> <a href="mailto:harmonia.sibo@gmail.com">harmonia.sibo@gmail.com</a></p>
+        <p><a href="tel:+48692922926">📞 692 922 926 </a></p>
+      </div>
+      <div class="footer-section">
+        <h4>Godziny</h4>
+        <p>Pn–Pt 8:00–20:00, Sob 9:00–15:00</p>
+      </div>
+    </div>
+    <div class="footer-bottom"><p>&copy; 2025 Karolina Bierlit — aktualizacja 2025-08-09 14:12</p></div>
+  </div>
+</footer>
+
+    <script>
+        function toggleExpand(contentId) {
+            const content = document.getElementById(contentId);
+            const icon = document.getElementById(contentId.replace('-details', '-icon'));
+            
+            if (content.classList.contains('show')) {
+                content.classList.remove('show');
+                icon.classList.remove('rotated');
+            } else {
+                // Close all other expanded sections
+                document.querySelectorAll('.expandable-content.show').forEach(el => {
+                    el.classList.remove('show');
+                });
+                document.querySelectorAll('.expand-icon.rotated').forEach(el => {
+                    el.classList.remove('rotated');
+                });
+                
+                // Open this section
+                content.classList.add('show');
+                icon.classList.add('rotated');
+            }
+        }
+
+        function reserveTest(testName) {
+            alert(`Rozpoczynam rezerwację: ${testName}\n\nW rzeczywistej aplikacji zostaniesz przekierowany do formularza rezerwacji.`);
+        }
+
+        function bookConsultation() {
+            alert('Przekierowanie do formularza rezerwacji konsultacji...');
+        }
+    </script>
+</body>
+</html>
