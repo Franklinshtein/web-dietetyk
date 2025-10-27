@@ -46,7 +46,7 @@
           <li><a href="o-mnie.html">O mnie</a></li>
           <li><a href="sibo.html">SIBO</a></li>
           <li><a href="cennik.html">Cennik</a></li>
-          <li><a href="artykuly.html">Artykuły</a></li>
+          
         </ul>
       </div>
 
@@ -84,7 +84,7 @@
         <li><a href="o-mnie.html">O mnie</a></li>
         <li><a href="sibo.html">SIBO</a></li>
         <li><a href="cennik.html">Cennik</a></li>
-        <li><a href="artykuly.html">Artykuły</a></li>
+        
         <li><a href="kontakt.html">Kontakt</a></li>
         <li><a href="sklep.html">Sklep</a></li>
       </ul>
@@ -361,13 +361,13 @@ ważny element badania.</p>
     </div>
   </section>
 
-  <!-- ===== Footer ===== -->
 <footer id="contact">
   <div class="container">
     <div class="footer-content">
       <div class="footer-section">
-        <h4>Polityka cookies</h4>
-        <p>Polityka prywatności danych osobowych (RODO)</p>
+        <h4>Informacje prawne</h4>
+        <p><a href="rodo.html" style="color: #6BCBBD; text-decoration: underline;">Polityka prywatności (RODO)</a></p>
+        <p>Polityka cookies</p>
       </div>
       <div class="footer-section">
         <h4>Kontakt</h4>
@@ -383,101 +383,90 @@ ważny element badania.</p>
   </div>
 </footer>
 
-  <!-- ===== Booking modal (IDs kept for JS compatibility) ===== -->
-  <div id="bookingModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="bookingTitle">
-    <div class="modal__content" role="document">
-      <div class="modal__head">
-        <button class="modal__close" type="button" aria-label="Zamknij">&times;</button>
-        <h2 id="bookingTitle" style="margin:0">Umów wizytę</h2>
-        <p style="margin:.25rem 0 0">Wybierz termin konsultacji dietetycznej</p>
-      </div>
-      <div class="modal__body">
-        <form class="form" id="bookingForm" novalidate>
-          <div class="row">
-            <div class="field">
-              <label for="firstName">Imię *</label>
-              <input class="input" type="text" id="firstName" name="firstName" required autocomplete="given-name">
-            </div>
-            <div class="field">
-              <label for="lastName">Nazwisko *</label>
-              <input class="input" type="text" id="lastName" name="lastName" required autocomplete="family-name">
-            </div>
+<!-- Booking Modal -->
+<div id="bookingModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="bookingTitle">
+  <div class="modal-content" role="document">
+    <div class="modal-header">
+      <button class="close" aria-label="Zamknij" type="button">&times;</button>
+      <h2 id="bookingTitle">Umów wizytę</h2>
+      <p>Wybierz termin konsultacji dietetycznej</p>
+    </div>
+    <div class="modal-body">
+      <form class="booking-form" id="bookingForm" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="firstName">Imię *</label>
+            <input type="text" id="firstName" name="firstName" required autocomplete="given-name">
           </div>
-          <div class="row">
-            <div class="field">
-              <label for="email">Email *</label>
-              <input class="input" type="email" id="email" name="email" required autocomplete="email">
-            </div>
-            <div class="field">
-              <label for="phone">Telefon *</label>
-              <input class="input" type="tel" id="phone" name="phone" required autocomplete="tel">
-            </div>
+          <div class="form-group">
+            <label for="lastName">Nazwisko *</label>
+            <input type="text" id="lastName" name="lastName" required autocomplete="family-name">
           </div>
-
-          <div class="field">
-            <label>Wybierz usługę *</label>
-            <div class="service-grid" id="serviceOptions">
-              <label class="service">
-                <input type="radio" name="service" value="sibo" />
-                <div>
-                  <div class="service__title">Badanie oddechowe SIBO</div>
-                  <div class="muted">350 zł • 180 min</div>
-                </div>
-              </label>
-              <label class="service">
-                <input type="radio" name="service" value="consultation" />
-                <div>
-                  <div class="service__title">Konsultacja dietetyczna</div>
-                  <div class="muted">150 zł • 90 min</div>
-                </div>
-              </label>
-              <label class="service">
-                <input type="radio" name="service" value="followup" />
-                <div>
-                  <div class="service__title">Wizyta kontrolna</div>
-                  <div class="muted">100 zł • 45 min</div>
-                </div>
-              </label>
-              <label class="service">
-                <input type="radio" name="service" value="sports" />
-                <div>
-                  <div class="service__title">Żywienie sportowców</div>
-                  <div class="muted">180 zł • 90 min</div>
-                </div>
-              </label>
-            </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" required autocomplete="email">
           </div>
-
-          <div class="row">
-            <div class="field">
-              <label for="appointmentDate">Wybierz datę *</label>
-              <input class="input" type="text" id="appointmentDate" name="appointmentDate" readonly required>
-            </div>
-            <div class="field">
-              <label>Wybierz godzinę *</label>
-              <div class="slots" id="timeSlots"></div>
-              <input type="hidden" id="selectedTime" name="selectedTime" required>
-            </div>
+          <div class="form-group">
+            <label for="phone">Telefon *</label>
+            <input type="tel" id="phone" name="phone" required autocomplete="tel">
           </div>
-
-          <div class="field">
-            <label for="notes">Dodatkowe informacje</label>
-            <textarea class="textarea" id="notes" name="notes" rows="3" placeholder="Krótki opis celu wizyty..."></textarea>
+        </div>
+        <div class="form-group">
+          <label>Wybierz usługę *</label>
+          <div class="service-options" id="serviceOptions">
+            <label class="service-option">
+              <input type="radio" name="service" value="sibo" />
+              <div class="service-title">Badanie oddechowe SIBO</div>
+              <div class="service-price">300 zł (180 min)</div>
+            </label>
+            <label class="service-option">
+              <input type="radio" name="service" value="consultation" />
+              <div class="service-title">Konsultacja dietetyczna</div>
+              <div class="service-price">180 zł (90 min)</div>
+            </label>
+            <label class="service-option">
+              <input type="radio" name="service" value="followup" />
+              <div class="service-title">Wizyta kontrolna</div>
+              <div class="service-price">150 zł (45 min)</div>
+            </label>
+            <label class="service-option">
+              <input type="radio" name="service" value="sports" />
+              <div class="service-title">Żywienie sportowców</div>
+              <div class="service-price">180 zł (90 min)</div>
+            </label>
           </div>
-
-          <div class="summary" id="bookingSummary" hidden>
-            <div class="summary__row"><span>Usługa:</span><strong id="summaryService"></strong></div>
-            <div class="summary__row"><span>Data:</span><strong id="summaryDate"></strong></div>
-            <div class="summary__row"><span>Godzina:</span><strong id="summaryTime"></strong></div>
-            <div class="summary__row"><span>Cena:</span><strong id="summaryPrice"></strong></div>
+        </div>
+        <div class="date-time-row">
+          <div class="form-group">
+            <label for="appointmentDate">Wybierz datę *</label>
+            <input type="text" id="appointmentDate" name="appointmentDate" readonly required>
           </div>
-
-          <button type="submit" class="submit" id="submitBtn" disabled>Potwierdź rezerwację</button>
-        </form>
-      </div>
+          <div class="form-group">
+            <label>Wybierz godzinę *</label>
+            <div class="time-slots" id="timeSlots"></div>
+            <input type="hidden" id="selectedTime" name="selectedTime" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="notes">Dodatkowe informacje</label>
+          <textarea id="notes" name="notes" rows="3" placeholder="Krótki opis celu wizyty..."></textarea>
+        </div>
+        <div class="booking-summary" id="bookingSummary" hidden>
+          <div class="summary-title">Podsumowanie rezerwacji:</div>
+          <div class="summary-item"><span>Usługa:</span><span id="summaryService"></span></div>
+          <div class="summary-item"><span>Data:</span><span id="summaryDate"></span></div>
+          <div class="summary-item"><span>Godzina:</span><span id="summaryTime"></span></div>
+          <div class="summary-item"><span>Cena:</span><span id="summaryPrice"></span></div>
+        </div>
+        <button type="submit" class="submit-btn" id="submitBtn" disabled>Potwierdź rezerwację</button>
+      </form>
     </div>
   </div>
+</div>
 
-  <script src="https://cdn.jsdelivr.net/npm/air-datepicker@3.4.0/air-datepicker.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/air-datepicker@3.4.0/air-datepicker.js"></script>
+<script src="script.js"></script>
 </body>
 </html>

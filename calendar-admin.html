@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kalendarz Wizyt - HARMONIA</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f5f7fa;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    header {
+      background: white;
+      padding: 20px 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      color: #2c5530;
+      font-size: 28px;
+      margin-bottom: 5px;
+    }
+
+    .subtitle {
+      color: #666;
+      font-size: 14px;
+    }
+
+    .toolbar {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .toolbar button, .toolbar select {
+      padding: 10px 20px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      background: white;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+
+    .toolbar button:hover {
+      background: #f0f0f0;
+    }
+
+    .toolbar button.primary {
+      background: #2c5530;
+      color: white;
+      border-color: #2c5530;
+    }
+
+    .toolbar button.primary:hover {
+      background: #1e3d21;
+    }
+
+    .view-toggle {
+      display: flex;
+      gap: 5px;
+      margin-left: auto;
+    }
+
+    .view-toggle button {
+      padding: 8px 16px;
+    }
+
+    .view-toggle button.active {
+      background: #2c5530;
+      color: white;
+    }
+
+    .calendar-container {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 30px;
+    }
+
+    .calendar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid #f0f0f0;
+    }
+
+    .calendar-header h2 {
+      font-size: 24px;
+      color: #333;
+    }
+
+    .calendar-nav {
+      display: flex;
+      gap: 10px;
+    }
+
+    .calendar-nav button {
+      padding: 8px 16px;
+      border: 1px solid #ddd;
+      background: white;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .calendar-nav button:hover {
+      background: #f0f0f0;
+    }
+
+    /* Month View */
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 1px;
+      background: #e0e0e0;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .calendar-day-header {
+      background: #2c5530;
+      color: white;
+      padding: 12px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .calendar-day {
+      background: white;
+      min-height: 120px;
+      padding: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+      position: relative;
+    }
+
+    .calendar-day:hover {
+      background: #f9f9f9;
+    }
+
+    .calendar-day.other-month {
+      background: #fafafa;
+      color: #999;
+    }
+
+    .calendar-day.today {
+      background: #fff9e6;
+      border: 2px solid #6BCBBD;
+    }
+
+    .calendar-day.has-bookings {
+      background: #e8f5f3;
+    }
+
+    .day-number {
+      font-weight: 600;
+      font-size: 16px;
+      margin-bottom: 8px;
+      color: #333;
+    }
+
+    .day-bookings {
+      font-size: 11px;
+      color: #666;
+    }
+
+    .booking-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 4px;
+    }
+
+    .booking-dot.sibo { background: #ff9800; }
+    .booking-dot.consultation { background: #2196F3; }
+    .booking-dot.followup { background: #4CAF50; }
+    .booking-dot.sports { background: #9C27B0; }
+
+    .booking-item {
+      background: white;
+      border-left: 3px solid #6BCBBD;
+      padding: 4px 6px;
+      margin-top: 4px;
+      border-radius: 3px;
+      font-size: 11px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Week View */
+    .week-view {
+      display: none;
+    }
+
+    .week-view.active {
+      display: block;
+    }
+
+    .week-grid {
+      display: grid;
+      grid-template-columns: 80px repeat(7, 1fr);
+      gap: 1px;
+      background: #e0e0e0;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .time-slot {
+      background: #f5f5f5;
+      padding: 10px;
+      text-align: center;
+      font-size: 12px;
+      color: #666;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .week-day-slot {
+      background: white;
+      padding: 5px;
+      min-height: 60px;
+      position: relative;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .week-day-slot:hover {
+      background: #f9f9f9;
+    }
+
+    /* Day View */
+    .day-view {
+      display: none;
+    }
+
+    .day-view.active {
+      display: block;
+    }
+
+    .day-schedule {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 1px;
+      background: #e0e0e0;
+    }
+
+    .appointment-card {
+      background: white;
+      border-left: 4px solid #6BCBBD;
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 6px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .appointment-card:hover {
+      transform: translateX(5px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+
+    .appointment-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .appointment-time {
+      font-weight: 600;
+      color: #2c5530;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .appointment-price {
+      background: #f0f0f0;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 13px;
+      color: #666;
+      font-weight: 600;
+    }
+
+    .appointment-patient {
+      font-size: 18px;
+      margin-bottom: 5px;
+      color: #333;
+    }
+
+    .appointment-service {
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .appointment-contact {
+      margin-top: 8px;
+      font-size: 13px;
+      color: #888;
+      padding-top: 8px;
+      border-top: 1px solid #f0f0f0;
+    }
+
+    .appointment-notes {
+      margin-top: 8px;
+      padding: 8px;
+      background: #fffef7;
+      border-radius: 4px;
+      font-size: 13px;
+      color: #666;
+      font-style: italic;
+    }
+
+    /* Timeline styles */
+    .day-timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .timeline-row {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      border-bottom: 1px solid #f0f0f0;
+      min-height: 60px;
+    }
+
+    .timeline-hour {
+      background: #f9f9f9;
+      padding: 15px;
+      text-align: center;
+      font-weight: 600;
+      color: #666;
+      font-size: 14px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      border-right: 2px solid #e0e0e0;
+    }
+
+    .timeline-content {
+      padding: 10px;
+      background: white;
+    }
+
+    .timeline-empty {
+      padding: 15px;
+      text-align: center;
+      color: #ddd;
+      font-size: 20px;
+    }
+
+    /* Day summary */
+    .day-summary {
+      margin-top: 30px;
+      padding: 25px;
+      background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%);
+      border-radius: 10px;
+      border: 2px solid #e0e0e0;
+    }
+
+    .day-summary h3 {
+      margin-bottom: 20px;
+      color: #2c5530;
+      font-size: 20px;
+    }
+
+    .summary-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+    }
+
+    .summary-item {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .summary-number {
+      font-size: 28px;
+      font-weight: bold;
+      color: #2c5530;
+      margin-bottom: 5px;
+    }
+
+    .summary-label {
+      font-size: 13px;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Stats */
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .stat-card {
+      background: linear-gradient(135deg, #6BCBBD 0%, #5ab3a6 100%);
+      color: white;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 32px;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .stat-label {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    /* Legend */
+    .legend {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+      padding: 15px;
+      background: #f9f9f9;
+      border-radius: 6px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+    }
+
+    /* Loading */
+    .loading {
+      text-align: center;
+      padding: 40px;
+      color: #666;
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal.show {
+      display: flex;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: 10px;
+      padding: 30px;
+      max-width: 600px;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .modal-header {
+      border-bottom: 2px solid #f0f0f0;
+      padding-bottom: 15px;
+      margin-bottom: 20px;
+    }
+
+    .modal-header h3 {
+      color: #2c5530;
+      font-size: 22px;
+    }
+
+    .modal-close {
+      float: right;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: #999;
+    }
+
+    .detail-row {
+      padding: 12px 0;
+      border-bottom: 1px solid #f0f0f0;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .detail-label {
+      font-weight: 600;
+      color: #666;
+    }
+
+    .detail-value {
+      color: #333;
+    }
+
+    .modal-actions {
+      margin-top: 20px;
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background: #2c5530;
+      color: white;
+    }
+
+    .btn-danger {
+      background: #f44336;
+      color: white;
+    }
+
+    .btn:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+
+    @media (max-width: 768px) {
+      .calendar-grid {
+        font-size: 12px;
+      }
+      
+      .calendar-day {
+        min-height: 80px;
+        padding: 4px;
+      }
+      
+      .toolbar {
+        flex-direction: column;
+      }
+      
+      .view-toggle {
+        margin-left: 0;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>📅 Kalendarz Wizyt</h1>
+      <p class="subtitle">Panel zarządzania rezerwacjami - HARMONIA</p>
+    </header>
+
+    <div class="stats-bar" id="statsBar">
+      <div class="stat-card">
+        <div class="stat-number" id="statToday">0</div>
+        <div class="stat-label">Dzisiaj</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="statWeek">0</div>
+        <div class="stat-label">Ten tydzień</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="statMonth">0</div>
+        <div class="stat-label">Ten miesiąc</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="statTotal">0</div>
+        <div class="stat-label">Wszystkie</div>
+      </div>
+    </div>
+
+    <div class="toolbar">
+      <button onclick="goToToday()" class="primary">Dzisiaj</button>
+      <select id="monthSelect" onchange="changeMonth()">
+        <option value="0">Styczeń</option>
+        <option value="1">Luty</option>
+        <option value="2">Marzec</option>
+        <option value="3">Kwiecień</option>
+        <option value="4">Maj</option>
+        <option value="5">Czerwiec</option>
+        <option value="6">Lipiec</option>
+        <option value="7">Sierpień</option>
+        <option value="8">Wrzesień</option>
+        <option value="9">Październik</option>
+        <option value="10">Listopad</option>
+        <option value="11">Grudzień</option>
+      </select>
+      <select id="yearSelect" onchange="changeYear()"></select>
+      <button onclick="refreshData()">🔄 Odśwież</button>
+      <button onclick="exportCalendar()">📥 Eksportuj</button>
+      
+      <div class="view-toggle">
+        <button class="active" onclick="switchView('month')">Miesiąc</button>
+        <button onclick="switchView('week')">Tydzień</button>
+        <button onclick="switchView('day')">Dzień</button>
+      </div>
+    </div>
+
+    <div class="legend">
+      <div class="legend-item">
+        <span class="booking-dot sibo"></span>
+        <span>Badanie SIBO</span>
+      </div>
+      <div class="legend-item">
+        <span class="booking-dot consultation"></span>
+        <span>Konsultacja</span>
+      </div>
+      <div class="legend-item">
+        <span class="booking-dot followup"></span>
+        <span>Wizyta kontrolna</span>
+      </div>
+      <div class="legend-item">
+        <span class="booking-dot sports"></span>
+        <span>Żywienie sportowców</span>
+      </div>
+    </div>
+
+    <div class="calendar-container">
+      <!-- Month View -->
+      <div id="monthView" class="month-view active">
+        <div class="calendar-header">
+          <h2 id="currentMonth"></h2>
+          <div class="calendar-nav">
+            <button onclick="previousMonth()">← Poprzedni</button>
+            <button onclick="nextMonth()">Następny →</button>
+          </div>
+        </div>
+        <div id="calendarGrid" class="calendar-grid">
+          <div class="loading">Ładowanie kalendarza...</div>
+        </div>
+      </div>
+
+      <!-- Week View -->
+      <div id="weekView" class="week-view">
+        <div class="calendar-header">
+          <h2 id="currentWeek"></h2>
+          <div class="calendar-nav">
+            <button onclick="previousWeek()">← Poprzedni</button>
+            <button onclick="nextWeek()">Następny →</button>
+          </div>
+        </div>
+        <div id="weekGrid" class="week-grid"></div>
+      </div>
+
+      <!-- Day View -->
+      <div id="dayView" class="day-view">
+        <div class="calendar-header">
+          <h2 id="currentDay"></h2>
+          <div class="calendar-nav">
+            <button onclick="previousDay()">← Poprzedni</button>
+            <button onclick="nextDay()">Następny →</button>
+          </div>
+        </div>
+        <div id="daySchedule"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Booking Details Modal -->
+  <div id="bookingModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="modal-close" onclick="closeModal()">&times;</button>
+        <h3>Szczegóły wizyty</h3>
+      </div>
+      <div id="bookingDetails"></div>
+      <div class="modal-actions">
+        <button class="btn btn-primary" onclick="sendReminder()">📧 Wyślij przypomnienie</button>
+        <button class="btn btn-danger" onclick="cancelBooking()">🗑️ Anuluj wizytę</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const API_URL = 'http://localhost:3000';
+    let allBookings = [];
+    let currentView = 'month';
+    let currentDate = new Date();
+    let selectedBooking = null;
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      initializeYearSelect();
+      setCurrentMonthYear();
+      loadBookings();
+    });
+
+    function initializeYearSelect() {
+      const yearSelect = document.getElementById('yearSelect');
+      const currentYear = new Date().getFullYear();
+      
+      for (let year = currentYear - 1; year <= currentYear + 2; year++) {
+        const option = document.createElement('option');
+        option.value = year;
+        option.textContent = year;
+        if (year === currentYear) option.selected = true;
+        yearSelect.appendChild(option);
+      }
+    }
+
+    function setCurrentMonthYear() {
+      document.getElementById('monthSelect').value = currentDate.getMonth();
+      document.getElementById('yearSelect').value = currentDate.getFullYear();
+    }
+
+    async function loadBookings() {
+      try {
+        const response = await fetch(`${API_URL}/api/bookings`);
+        if (!response.ok) throw new Error('Failed to fetch bookings');
+        
+        allBookings = await response.json();
+        updateStats();
+        renderCurrentView();
+      } catch (error) {
+        console.error('Error loading bookings:', error);
+        alert('Nie można załadować rezerwacji. Sprawdź czy backend działa.');
+      }
+    }
+
+    function updateStats() {
+      const today = new Date().toISOString().split('T')[0];
+      const weekStart = getWeekStart(new Date());
+      const monthStart = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).toISOString().split('T')[0];
+
+      const todayCount = allBookings.filter(b => b.date === today).length;
+      const weekCount = allBookings.filter(b => b.date >= weekStart).length;
+      const monthCount = allBookings.filter(b => b.date.startsWith(monthStart.substring(0, 7))).length;
+
+      document.getElementById('statToday').textContent = todayCount;
+      document.getElementById('statWeek').textContent = weekCount;
+      document.getElementById('statMonth').textContent = monthCount;
+      document.getElementById('statTotal').textContent = allBookings.length;
+    }
+
+    function renderCurrentView() {
+      switch(currentView) {
+        case 'month':
+          renderMonthView();
+          break;
+        case 'week':
+          renderWeekView();
+          break;
+        case 'day':
+          renderDayView();
+          break;
+      }
+    }
+
+    function renderMonthView() {
+      const year = currentDate.getFullYear();
+      const month = currentDate.getMonth();
+      
+      document.getElementById('currentMonth').textContent = 
+        `${getMonthName(month)} ${year}`;
+
+      const firstDay = new Date(year, month, 1);
+      const lastDay = new Date(year, month + 1, 0);
+      const startDay = firstDay.getDay() === 0 ? 6 : firstDay.getDay() - 1;
+      const daysInMonth = lastDay.getDate();
+
+      let html = '';
+      
+      // Day headers
+      ['Pon', 'Wt', 'Śr', 'Czw', 'Pt', 'Sob', 'Nie'].forEach(day => {
+        html += `<div class="calendar-day-header">${day}</div>`;
+      });
+
+      // Empty cells before month starts
+      for (let i = 0; i < startDay; i++) {
+        const prevMonthDay = new Date(year, month, -startDay + i + 1);
+        html += `<div class="calendar-day other-month">
+          <div class="day-number">${prevMonthDay.getDate()}</div>
+        </div>`;
+      }
+
+      // Days of month
+      const today = new Date().toISOString().split('T')[0];
+      
+      for (let day = 1; day <= daysInMonth; day++) {
+        const date = new Date(year, month, day);
+        const dateStr = formatDate(date);
+        const dayBookings = allBookings.filter(b => b.date === dateStr);
+        
+        const isToday = dateStr === today;
+        const hasBookings = dayBookings.length > 0;
+        
+        let classes = 'calendar-day';
+        if (isToday) classes += ' today';
+        if (hasBookings) classes += ' has-bookings';
+        
+        html += `<div class="${classes}" onclick="showDayDetails('${dateStr}')">
+          <div class="day-number">${day}</div>
+          <div class="day-bookings">`;
+        
+        dayBookings.slice(0, 3).forEach(booking => {
+          const type = getBookingType(booking.service);
+          html += `<div class="booking-item">
+            <span class="booking-dot ${type}"></span>
+            ${booking.time} ${booking.firstName} ${booking.lastName}
+          </div>`;
+        });
+        
+        if (dayBookings.length > 3) {
+          html += `<div class="booking-item">+${dayBookings.length - 3} więcej</div>`;
+        }
+        
+        html += `</div></div>`;
+      }
+
+      // Empty cells after month ends
+      const totalCells = startDay + daysInMonth;
+      const remainingCells = 7 - (totalCells % 7);
+      if (remainingCells < 7) {
+        for (let i = 1; i <= remainingCells; i++) {
+          const nextMonthDay = new Date(year, month + 1, i);
+          html += `<div class="calendar-day other-month">
+            <div class="day-number">${nextMonthDay.getDate()}</div>
+          </div>`;
+        }
+      }
+
+      document.getElementById('calendarGrid').innerHTML = html;
+    }
+
+    function renderWeekView() {
+      const weekStart = new Date(getWeekStart(currentDate));
+      const weekEnd = new Date(weekStart);
+      weekEnd.setDate(weekEnd.getDate() + 6);
+      
+      document.getElementById('currentWeek').textContent = 
+        `${weekStart.getDate()} ${getMonthName(weekStart.getMonth())} - ${weekEnd.getDate()} ${getMonthName(weekEnd.getMonth())} ${currentDate.getFullYear()}`;
+
+      // Working hours: 8:00 - 18:00 (clinic hours)
+      const hours = [];
+      for (let h = 8; h <= 18; h++) {
+        hours.push(`${String(h).padStart(2, '0')}:00`);
+      }
+
+      let html = '';
+      
+      // Header row with days
+      html += '<div class="time-slot" style="background: #2c5530; color: white;">Godzina</div>';
+      
+      for (let i = 0; i < 7; i++) {
+        const day = new Date(weekStart);
+        day.setDate(day.getDate() + i);
+        const dayName = ['Pon', 'Wt', 'Śr', 'Czw', 'Pt', 'Sob', 'Nie'][i];
+        const isToday = formatDate(day) === new Date().toISOString().split('T')[0];
+        
+        html += `<div class="calendar-day-header" style="${isToday ? 'background: #6BCBBD;' : ''}">
+          ${dayName}<br>${day.getDate()}/${day.getMonth() + 1}
+        </div>`;
+      }
+
+      // Time slots with appointments
+      hours.forEach(hour => {
+        html += `<div class="time-slot">${hour}</div>`;
+        
+        for (let i = 0; i < 7; i++) {
+          const day = new Date(weekStart);
+          day.setDate(day.getDate() + i);
+          const dateStr = formatDate(day);
+          
+          // Get appointments for this hour
+          const hourAppointments = allBookings.filter(b => 
+            b.date === dateStr && b.time.startsWith(hour.substring(0, 2))
+          );
+
+          const isToday = dateStr === new Date().toISOString().split('T')[0];
+          
+          html += `<div class="week-day-slot" style="${isToday ? 'background: #fffef7;' : ''}">`;
+          
+          hourAppointments.forEach(booking => {
+            const type = getBookingType(booking.service);
+            html += `<div class="booking-item" onclick='showBookingDetails(${JSON.stringify(booking).replace(/'/g, "&apos;")})' 
+                     style="cursor: pointer; margin: 2px; padding: 4px; border-left: 3px solid;">
+              <span class="booking-dot ${type}"></span>
+              ${booking.time} ${booking.firstName} ${booking.lastName.charAt(0)}.
+            </div>`;
+          });
+          
+          html += '</div>';
+        }
+      });
+
+      document.getElementById('weekGrid').innerHTML = html;
+    }
+
+    function renderDayView() {
+      const dateStr = formatDate(currentDate);
+      const dayName = ['Niedziela', 'Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek', 'Sobota'][currentDate.getDay()];
+      
+      document.getElementById('currentDay').textContent = 
+        `${dayName}, ${currentDate.getDate()} ${getMonthName(currentDate.getMonth())} ${currentDate.getFullYear()}`;
+
+      const dayBookings = allBookings
+        .filter(b => b.date === dateStr)
+        .sort((a, b) => a.time.localeCompare(b.time));
+
+      let html = '';
+      
+      if (dayBookings.length === 0) {
+        html = `<div class="loading" style="padding: 60px; text-align: center;">
+          <div style="font-size: 48px; margin-bottom: 20px;">📅</div>
+          <h3 style="color: #666; margin-bottom: 10px;">Brak wizyt w tym dniu</h3>
+          <p style="color: #999;">To świetny dzień na odpoczynek!</p>
+        </div>`;
+      } else {
+        // Group by hour for timeline view
+        const timeline = {};
+        
+        // Initialize all hours
+        for (let h = 8; h <= 18; h++) {
+          timeline[h] = [];
+        }
+        
+        // Add bookings to timeline
+        dayBookings.forEach(booking => {
+          const hour = parseInt(booking.time.split(':')[0]);
+          if (timeline[hour] !== undefined) {
+            timeline[hour].push(booking);
+          }
+        });
+
+        html += '<div class="day-timeline">';
+        
+        // Render timeline
+        Object.keys(timeline).sort((a, b) => a - b).forEach(hour => {
+          const hourStr = `${String(hour).padStart(2, '0')}:00`;
+          const appointments = timeline[hour];
+          
+          html += `<div class="timeline-row">
+            <div class="timeline-hour">${hourStr}</div>
+            <div class="timeline-content">`;
+          
+          if (appointments.length === 0) {
+            html += `<div class="timeline-empty">
+              <span style="color: #ccc;">—</span>
+            </div>`;
+          } else {
+            appointments.forEach(booking => {
+              const type = getBookingType(booking.service);
+              const serviceShort = booking.service.length > 30 ? 
+                booking.service.substring(0, 30) + '...' : booking.service;
+              
+              html += `<div class="appointment-card" onclick='showBookingDetails(${JSON.stringify(booking).replace(/'/g, "&apos;")})'>
+                <div class="appointment-header">
+                  <span class="appointment-time">
+                    <span class="booking-dot ${type}"></span>
+                    ${booking.time}
+                  </span>
+                  <span class="appointment-price">${booking.price || ''}</span>
+                </div>
+                <div class="appointment-patient">
+                  <strong>${booking.firstName} ${booking.lastName}</strong>
+                </div>
+                <div class="appointment-service">${serviceShort}</div>
+                <div class="appointment-contact">
+                  <span>📧 ${booking.email}</span>
+                  <span style="margin-left: 15px;">📱 ${booking.phone}</span>
+                </div>
+                ${booking.notes ? `<div class="appointment-notes">💬 ${booking.notes}</div>` : ''}
+              </div>`;
+            });
+          }
+          
+          html += `</div></div>`;
+        });
+        
+        html += '</div>';
+        
+        // Summary at the bottom
+        html += `<div class="day-summary">
+          <h3>📊 Podsumowanie dnia</h3>
+          <div class="summary-stats">
+            <div class="summary-item">
+              <div class="summary-number">${dayBookings.length}</div>
+              <div class="summary-label">Wizyty</div>
+            </div>
+            <div class="summary-item">
+              <div class="summary-number">${new Set(dayBookings.map(b => b.service)).size}</div>
+              <div class="summary-label">Rodzaje usług</div>
+            </div>
+            <div class="summary-item">
+              <div class="summary-number">${dayBookings[0]?.time || '—'}</div>
+              <div class="summary-label">Pierwsza wizyta</div>
+            </div>
+            <div class="summary-item">
+              <div class="summary-number">${dayBookings[dayBookings.length - 1]?.time || '—'}</div>
+              <div class="summary-label">Ostatnia wizyta</div>
+            </div>
+          </div>
+        </div>`;
+      }
+
+      document.getElementById('daySchedule').innerHTML = html;
+    }
+
+    function showDayDetails(dateStr) {
+      currentDate = new Date(dateStr);
+      switchView('day');
+    }
+
+    function showBookingDetails(booking) {
+      selectedBooking = booking;
+      
+      let html = `
+        <div class="detail-row">
+          <span class="detail-label">Pacjent:</span>
+          <span class="detail-value">${booking.firstName} ${booking.lastName}</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Data:</span>
+          <span class="detail-value">${formatDatePL(booking.date)}</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Godzina:</span>
+          <span class="detail-value">${booking.time}</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Usługa:</span>
+          <span class="detail-value">${booking.service}</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Cena:</span>
+          <span class="detail-value">${booking.price}</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Email:</span>
+          <span class="detail-value">${booking.email}</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Telefon:</span>
+          <span class="detail-value">${booking.phone}</span>
+        </div>`;
+      
+      if (booking.notes) {
+        html += `<div class="detail-row">
+          <span class="detail-label">Notatki:</span>
+          <span class="detail-value">${booking.notes}</span>
+        </div>`;
+      }
+
+      document.getElementById('bookingDetails').innerHTML = html;
+      document.getElementById('bookingModal').classList.add('show');
+    }
+
+    function closeModal() {
+      document.getElementById('bookingModal').classList.remove('show');
+      selectedBooking = null;
+    }
+
+    async function cancelBooking() {
+      if (!selectedBooking) return;
+      
+      if (!confirm(`Czy na pewno chcesz anulować wizytę dla ${selectedBooking.firstName} ${selectedBooking.lastName}?`)) {
+        return;
+      }
+
+      try {
+        const response = await fetch(`${API_URL}/api/bookings/${selectedBooking.id}`, {
+          method: 'DELETE'
+        });
+
+        if (!response.ok) throw new Error('Failed to cancel booking');
+
+        alert('✅ Wizyta została anulowana');
+        closeModal();
+        loadBookings();
+      } catch (error) {
+        console.error('Error canceling booking:', error);
+        alert('❌ Błąd podczas anulowania wizyty');
+      }
+    }
+
+    function sendReminder() {
+      if (!selectedBooking) return;
+      alert(`📧 Przypomnienie zostanie wysłane do: ${selectedBooking.email}\n\n(Funkcja w przygotowaniu)`);
+    }
+
+    function switchView(view) {
+      currentView = view;
+      
+      // Update buttons
+      document.querySelectorAll('.view-toggle button').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      event.target.classList.add('active');
+      
+      // Show/hide views
+      document.getElementById('monthView').classList.toggle('active', view === 'month');
+      document.getElementById('weekView').classList.toggle('active', view === 'week');
+      document.getElementById('dayView').classList.toggle('active', view === 'day');
+      
+      renderCurrentView();
+    }
+
+    function previousMonth() {
+      currentDate.setMonth(currentDate.getMonth() - 1);
+      setCurrentMonthYear();
+      renderMonthView();
+    }
+
+    function nextMonth() {
+      currentDate.setMonth(currentDate.getMonth() + 1);
+      setCurrentMonthYear();
+      renderMonthView();
+    }
+
+    function previousWeek() {
+      currentDate.setDate(currentDate.getDate() - 7);
+      renderWeekView();
+    }
+
+    function nextWeek() {
+      currentDate.setDate(currentDate.getDate() + 7);
+      renderWeekView();
+    }
+
+    function previousDay() {
+      currentDate.setDate(currentDate.getDate() - 1);
+      renderDayView();
+    }
+
+    function nextDay() {
+      currentDate.setDate(currentDate.getDate() + 1);
+      renderDayView();
+    }
+
+    function goToToday() {
+      currentDate = new Date();
+      setCurrentMonthYear();
+      renderCurrentView();
+    }
+
+    function changeMonth() {
+      const month = parseInt(document.getElementById('monthSelect').value);
+      currentDate.setMonth(month);
+      renderMonthView();
+    }
+
+    function changeYear() {
+      const year = parseInt(document.getElementById('yearSelect').value);
+      currentDate.setFullYear(year);
+      renderMonthView();
+    }
+
+    function refreshData() {
+      loadBookings();
+    }
+
+    function exportCalendar() {
+      const csv = convertToCSV(allBookings);
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement('a');
+      const url = URL.createObjectURL(blob);
+      
+      link.setAttribute('href', url);
+      link.setAttribute('download', `kalendarz-${new Date().toISOString().split('T')[0]}.csv`);
+      link.style.visibility = 'hidden';
+      
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    function convertToCSV(data) {
+      const headers = ['Data', 'Godzina', 'Imię', 'Nazwisko', 'Email', 'Telefon', 'Usługa', 'Cena', 'Notatki'];
+      const rows = data.map(b => [
+        b.date, b.time, b.firstName, b.lastName, b.email, b.phone, b.service, b.price, b.notes || ''
+      ]);
+      
+      let csv = headers.join(',') + '\n';
+      csv += rows.map(row => row.map(cell => `"${cell}"`).join(',')).join('\n');
+      return csv;
+    }
+
+    // Helper functions
+    function formatDate(date) {
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+      return `${year}-${month}-${day}`;
+    }
+
+    function formatDatePL(dateStr) {
+      const [year, month, day] = dateStr.split('-');
+      return `${day}.${month}.${year}`;
+    }
+
+    function getMonthName(month) {
+      const months = ['Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec',
+                     'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień'];
+      return months[month];
+    }
+
+    function getBookingType(service) {
+      if (service.includes('SIBO')) return 'sibo';
+      if (service.includes('kontrolna')) return 'followup';
+      if (service.includes('sportow')) return 'sports';
+      return 'consultation';
+    }
+
+    function getWeekStart(date) {
+      const d = new Date(date);
+      const day = d.getDay();
+      const diff = d.getDate() - day + (day === 0 ? -6 : 1);
+      return new Date(d.setDate(diff)).toISOString().split('T')[0];
+    }
+
+    function getWeekNumber(date) {
+      const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+      const dayNum = d.getUTCDay() || 7;
+      d.setUTCDate(d.getUTCDate() + 4 - dayNum);
+      const yearStart = new Date(Date.UTC(d.getUTCFullYear(),0,1));
+      return Math.ceil((((d - yearStart) / 86400000) + 1)/7);
+    }
+
+    // Close modal on outside click
+    document.getElementById('bookingModal').addEventListener('click', (e) => {
+      if (e.target.id === 'bookingModal') closeModal();
+    });
+
+    // Keyboard shortcuts
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+      if (e.key === 'ArrowLeft' && currentView === 'month') previousMonth();
+      if (e.key === 'ArrowRight' && currentView === 'month') nextMonth();
+    });
+  </script>
+</body>
+</html>

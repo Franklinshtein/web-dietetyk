@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Test oddechowy SIBO — diagnostyka wodorowo-metanowa." />
-  <title>Test SIBO — Dietetyk Karolina Bierlit</title>
+  <meta name="description" content="Sklep - Plany żywieniowe i e-booki dietetyczne HARMONIA" />
+  <title>Sklep – Dietetyk Karolina Bierlit</title>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/air-datepicker@3.4.0/air-datepicker.css">
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="sklep.css" />
 </head>
 <body>
 
@@ -39,21 +39,19 @@
     </div>
   </div>
 
-
     <nav class="main-nav" aria-label="Główna nawigacja">
       <div class="nav-left">
         <ul class="nav-links">
           <li><a href="o-mnie.html">O mnie</a></li>
           <li><a href="sibo.html">SIBO</a></li>
           <li><a href="cennik.html">Cennik</a></li>
-          <li><a href="artykuly.html">Artykuły</a></li>
+          
         </ul>
       </div>
 
-      
       <div class="nav-center">
         <a href="index.html" aria-label="Strona główna">
-<img class="logo" src="./img/logo.png" alt="Logo Karolina Bierlit Dietetyk Kliniczny" />
+          <img class="logo" src="./img/logo.png" alt="Logo Karolina Bierlit Dietetyk Kliniczny" />
         </a>
       </div>
       
@@ -61,7 +59,7 @@
         <ul class="nav-links">
           <li><a href="kontakt.html">Kontakt</a></li>
           <li><a href="sklep.html">Sklep</a></li>
-                  <li><a href="#" class="btn-green js-open-booking">Zarezerwuj badanie</a></li>
+          <li><a href="#" class="btn-green js-open-booking">Zarezerwuj badanie</a></li>
         </ul>
       </div>
       
@@ -80,11 +78,11 @@
     </div>
     <div class="mobile-menu-content">
       <ul class="mobile-nav-links">
-         <li><a href="index.html">Główna</a></li>
+        <li><a href="index.html">Główna</a></li>
         <li><a href="o-mnie.html">O mnie</a></li>
         <li><a href="sibo.html">SIBO</a></li>
         <li><a href="cennik.html">Cennik</a></li>
-        <li><a href="artykuly.html">Artykuły</a></li>
+        
         <li><a href="kontakt.html">Kontakt</a></li>
         <li><a href="sklep.html">Sklep</a></li>
       </ul>
@@ -105,36 +103,131 @@
     </div>
   </div>
 
-
-
 <main>
-  <section class="page-hero"><div class="container"><h1>Plany żywieniowe</h1><p>Gotowe schematy żywieniowe opracowane przez specjalistę.</p></div></section>
-  <section class="container services-grid mt-4">
-    <article class="service-card"><h3>Plan żywieniowy – Dieta restrykcyjna wegetariańska</h3><p>Zbilansowany, restrykcyjny jadłospis dla osób na diecie wegetariańskiej.</p><button class="submit-btn">Kup</button></article>
-    <article class="service-card"><h3>Plan żywieniowy – faza średnio restrykcyjna SIBO</h3><p>Plan posiłków dla etapu średnich restrykcji — praktyczne przepisy i lista zakupów.</p><button class="submit-btn">Kup</button></article>
-    <article class="service-card"><h3>Plan żywieniowy – faza restrykcyjna SIBO</h3><p>Najbardziej restrykcyjna faza z klarownymi zasadami i prostymi daniami.</p><button class="submit-btn">Kup</button></article>
+  <section class="page-hero">
+    <div class="container">
+      <h1>Sklep</h1>
+      <p>Gotowe plany żywieniowe i e-booki dietetyczne opracowane przez specjalistę</p>
+    </div>
   </section>
-</main>
 
+  <section class="container">
+    <div class="shop-grid">
+      
+      <!-- Produkt 1 -->
+      <article class="product-card">
+        <span class="product-badge">Bestseller</span>
+        <span class="product-icon">🥗</span>
+        <h3>Plan żywieniowy – Dieta restrykcyjna wegetariańska</h3>
+        <p>Zbilansowany, restrykcyjny jadłospis dla osób na diecie wegetariańskiej. Zawiera 7-dniowy plan posiłków z listą zakupów.</p>
+        
+        <ul class="product-features">
+          <li>7-dniowy jadłospis</li>
+          <li>Lista zakupów</li>
+          <li>Przepisy krok po kroku</li>
+          <li>Format PDF do wydruku</li>
+        </ul>
+        
+        <div class="product-price">
+          <span class="currency">PLN</span> 89
+        </div>
+        
+        <button class="buy-btn" onclick="handlePurchase('plan-wegetarianski', 89, this)">
+          Kup teraz
+        </button>
+        <button class="contact-btn" onclick="handleContact('Plan żywieniowy – Dieta restrykcyjna wegetariańska')">
+          Zapytaj o szczegóły
+        </button>
+      </article>
+
+      <!-- Produkt 2 -->
+      <article class="product-card">
+        <span class="product-badge">Polecane</span>
+        <span class="product-icon">🌿</span>
+        <h3>Plan żywieniowy – Faza średnio restrykcyjna SIBO</h3>
+        <p>Plan posiłków dla etapu średnich restrykcji — praktyczne przepisy i lista zakupów dostosowana do SIBO.</p>
+        
+        <ul class="product-features">
+          <li>14-dniowy jadłospis</li>
+          <li>Przepisy Low-FODMAP</li>
+          <li>Wskazówki dietetyczne</li>
+          <li>Lista produktów dozwolonych</li>
+        </ul>
+        
+        <div class="product-price">
+          <span class="currency">PLN</span> 129
+        </div>
+        
+        <button class="buy-btn" onclick="handlePurchase('plan-sibo-srednio', 129, this)">
+          Kup teraz
+        </button>
+        <button class="contact-btn" onclick="handleContact('Plan żywieniowy – Faza średnio restrykcyjna SIBO')">
+          Zapytaj o szczegóły
+        </button>
+      </article>
+
+      <!-- Produkt 3 -->
+      <article class="product-card">
+        <span class="product-badge">Nowość</span>
+        <span class="product-icon">🥬</span>
+        <h3>Plan żywieniowy – Faza restrykcyjna SIBO</h3>
+        <p>Najbardziej restrykcyjna faza z klarownymi zasadami i prostymi daniami. Idealny na początek terapii SIBO.</p>
+        
+        <ul class="product-features">
+          <li>7-dniowy jadłospis</li>
+          <li>Minimalistyczne przepisy</li>
+          <li>Ścisła dieta Low-FODMAP</li>
+          <li>Wsparcie mailowe</li>
+        </ul>
+        
+        <div class="product-price">
+          <span class="currency">PLN</span> 149
+        </div>
+        
+        <button class="buy-btn" onclick="handlePurchase('plan-sibo-restrykcyjny', 149, this)">
+          Kup teraz
+        </button>
+        <button class="contact-btn" onclick="handleContact('Plan żywieniowy – Faza restrykcyjna SIBO')">
+          Zapytaj o szczegóły
+        </button>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="container" style="margin-top: 60px; margin-bottom: 60px; text-align: center;">
+    <div style="background: linear-gradient(135deg, #e8f5f1, #f0f9f6); padding: 40px; border-radius: 20px; max-width: 800px; margin: 0 auto;">
+      <h2 style="color: #2c5530; margin-bottom: 16px;">Potrzebujesz indywidualnego planu?</h2>
+      <p style="color: #55625a; font-size: 1.1rem; margin-bottom: 24px;">
+        Każdy organizm jest inny. Skorzystaj z konsultacji dietetycznej i otrzymaj plan dopasowany specjalnie do Twoich potrzeb.
+      </p>
+      <a href="cennik.html" class="btn-green" style="display: inline-block; padding: 16px 40px; text-decoration: none;">
+        Zobacz ofertę konsultacji
+      </a>
+    </div>
+  </section>
+
+</main>
 
 <footer id="contact">
   <div class="container">
     <div class="footer-content">
       <div class="footer-section">
-        <h4>Polityka cookies</h4>
-        <p>Polityka prywatności danych osobowych (RODO)</p>
+        <h4>Informacje prawne</h4>
+        <p><a href="rodo.html" style="color: #6BCBBD; text-decoration: underline;">Polityka prywatności (RODO)</a></p>
+        <p>Polityka cookies</p>
       </div>
       <div class="footer-section">
         <h4>Kontakt</h4>
-        <p> <a href="mailto:harmonia.sibo@gmail.com">harmonia.sibo@gmail.com</a></p>
-        <p><a href="tel:+48692922926">📞 692 922 926 </a></p>
+        <p><a href="mailto:harmonia.sibo@gmail.com">harmonia.sibo@gmail.com</a></p>
+        <p><a href="tel:+48692922926">📞 692 922 926</a></p>
       </div>
       <div class="footer-section">
         <h4>Godziny</h4>
         <p>Pn–Pt 8:00–20:00, Sob 9:00–15:00</p>
       </div>
     </div>
-    <div class="footer-bottom"><p>&copy; 2025 Karolina Bierlit — aktualizacja 2025-08-09 14:12</p></div>
+    <div class="footer-bottom"><p>&copy; 2025 Karolina Bierlit</p></div>
   </div>
 </footer>
 
@@ -174,17 +267,17 @@
             <label class="service-option">
               <input type="radio" name="service" value="sibo" />
               <div class="service-title">Badanie oddechowe SIBO</div>
-              <div class="service-price">350 zł (180 min)</div>
+              <div class="service-price">300 zł (180 min)</div>
             </label>
             <label class="service-option">
               <input type="radio" name="service" value="consultation" />
               <div class="service-title">Konsultacja dietetyczna</div>
-              <div class="service-price">150 zł (90 min)</div>
+              <div class="service-price">180 zł (90 min)</div>
             </label>
             <label class="service-option">
               <input type="radio" name="service" value="followup" />
               <div class="service-title">Wizyta kontrolna</div>
-              <div class="service-price">100 zł (45 min)</div>
+              <div class="service-price">150 zł (45 min)</div>
             </label>
             <label class="service-option">
               <input type="radio" name="service" value="sports" />
@@ -223,5 +316,85 @@
 
 <script src="https://cdn.jsdelivr.net/npm/air-datepicker@3.4.0/air-datepicker.js"></script>
 <script src="script.js"></script>
+<script>
+// ============================================
+// SHOP FUNCTIONALITY
+// ============================================
+
+/**
+ * Handle product purchase
+ */
+function handlePurchase(productId, price, button) {
+  button.classList.add('loading');
+  button.disabled = true;
+  
+  setTimeout(() => {
+    const productNames = {
+      'plan-wegetarianski': 'Plan żywieniowy – Dieta restrykcyjna wegetariańska',
+      'plan-sibo-srednio': 'Plan żywieniowy – Faza średnio restrykcyjna SIBO',
+      'plan-sibo-restrykcyjny': 'Plan żywieniowy – Faza restrykcyjna SIBO'
+    };
+    
+    const subject = encodeURIComponent(`Zamówienie: ${productNames[productId]}`);
+    const body = encodeURIComponent(
+      `Dzień dobry,\n\n` +
+      `Chciałbym/chciałabym zamówić:\n` +
+      `Produkt: ${productNames[productId]}\n` +
+      `Cena: ${price} PLN\n\n` +
+      `Proszę o informacje dotyczące płatności i dostawy.\n\n` +
+      `Pozdrawiam`
+    );
+    
+    window.location.href = `mailto:harmonia.sibo@gmail.com?subject=${subject}&body=${body}`;
+    
+    button.classList.remove('loading');
+    button.classList.add('success');
+    button.textContent = 'Email wysłany!';
+    button.disabled = false;
+    
+    setTimeout(() => {
+      button.classList.remove('success');
+      button.innerHTML = 'Kup teraz';
+    }, 3000);
+  }, 1000);
+}
+
+/**
+ * Handle contact request
+ */
+function handleContact(productName) {
+  const subject = encodeURIComponent(`Pytanie o: ${productName}`);
+  const body = encodeURIComponent(
+    `Dzień dobry,\n\n` +
+    `Mam pytanie dotyczące produktu: ${productName}\n\n` +
+    `[Proszę opisać swoje pytanie tutaj]\n\n` +
+    `Pozdrawiam`
+  );
+  
+  window.location.href = `mailto:harmonia.sibo@gmail.com?subject=${subject}&body=${body}`;
+}
+
+// Scroll animation
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -100px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, observerOptions);
+
+document.querySelectorAll('.product-card').forEach(card => {
+  card.style.opacity = '0';
+  card.style.transform = 'translateY(30px)';
+  card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+  observer.observe(card);
+});
+</script>
 </body>
 </html>
