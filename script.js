@@ -169,28 +169,50 @@
   }
 
   /* ------------------ Booking ------------------ */
+  // ⭐ BACKEND API URL - Uses relative URLs (works on Railway and localhost)
+  // If frontend and backend are on same domain, use empty string
+  // If separate, set to your Railway URL: 'https://your-app.railway.app'
+  const API_URL = window.location.hostname === 'localhost' 
+    ? 'http://localhost:3000' 
+    : ''; // Empty = same domain (Railway)
+  
   let datepicker = null;
   let selectedService = null;
   let selectedDate = null;
   let selectedTime = null;
 
   const services = {
-    sibo:         { name: 'Badanie oddechowe SIBO', price: '350 zł', duration: '180 min' },
-    consultation: { name: 'Konsultacja dietetyczna', price: '150 zł', duration: '90 min'  },
-    followup:     { name: 'Wizyta kontrolna',        price: '100 zł', duration: '45 min'  },
-    sports:       { name: 'Żywienie sportowców',     price: '180 zł', duration: '90 min'  }
+    sibo:                  { name: 'Badanie oddechowe SIBO', price: '350 zł', duration: '180 min' },
+    consultation:          { name: 'Konsultacja dietetyczna', price: '150 zł', duration: '90 min'  },
+    followup:              { name: 'Wizyta kontrolna',        price: '100 zł', duration: '45 min'  },
+    sports:                { name: 'Żywienie sportowców',     price: '180 zł', duration: '90 min'  },
+    'sibo-test':           { name: 'Test wodorowo-metanowy w kierunku SIBO / IMO', price: '300 zł', duration: '180 min' },
+    'sugar-intolerance':   { name: 'Test wodorowy w kierunku nietolerancji cukrów', price: '160 zł', duration: '120 min' },
+    'consultation-detailed': { name: 'Konsultacja dietetyczna - szczegółowo', price: '180 zł', duration: '90 min' },
+    'consultation-followup': { name: 'Konsultacja dietetyczna kontrolna', price: '150 zł', duration: '45 min' },
+    'monthly-package':     { name: 'Pakiet współpracy na miesiąc', price: '450 zł', duration: '90 min' },
+    'meal-plan-2weeks':    { name: 'Plan żywieniowy na dwa tygodnie', price: '250 zł', duration: '60 min' },
+    'meal-plan-1week':     { name: 'Plan żywieniowy na tydzień', price: '150 zł', duration: '60 min' }
   };
 
-  const availableTimes = ['08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00'];
-  const bookedAppointments = { '2025-07-29':['09:00','14:00','16:00'] };
-
-  function openBookingModal() {
+  function openBookingModal(preselectedService = null) {
     const modal = $('#bookingModal');
     if (!modal) return;
 
     modal.classList.add('show');
     modal.setAttribute('aria-hidden', 'false');
     ScrollLock.lock();
+
+    // If a service is preselected, select it in the form
+    if (preselectedService && services[preselectedService]) {
+      setTimeout(() => {
+        const serviceRadio = $(`input[name="service"][value="${preselectedService}"]`);
+        if (serviceRadio) {
+          serviceRadio.checked = true;
+          selectService(preselectedService);
+        }
+      }, 100);
+    }
 
     // Init datepicker after paint
     setTimeout(initializeDatepicker, 50);
@@ -236,98 +258,112 @@
           if (date.getDay() === 0) return { disabled: true, classes: 'disabled-date' };
           return {};
         },
-        onSelect: ({ date }) => {
-          if (date) {
-            selectedDate = date;
-            updateTimeSlots(date);
-            updateSummary();
-            checkFormValidity();
-          }
-        }
-      });
-
-      const showPicker = () => { if (datepicker && !datepicker.visible) datepicker.show(); };
-      input.addEventListener('focus', showPicker);
-      input.addEventListener('click', showPicker);
-    } else {
-      // Fallback
-      input.type = 'date';
-      input.removeAttribute('readonly');
-      const today = new Date();
-      const maxDate = new Date(today.getTime() + 90*24*60*60*1000);
-      input.min = today.toISOString().split('T')[0];
-      input.max = maxDate.toISOString().split('T')[0];
-      input.addEventListener('change', (e) => {
-        if (e.target.value) {
-          selectedDate = new Date(e.target.value);
-          updateTimeSlots(selectedDate);
-          updateSummary();
+        onSelect: async ({ date }) => {
+          if (!date) return;
+          selectedDate = date;
+          
+          // 🆕 Fetch available times from backend
+          await fetchAvailableTimes(date);
+          renderTimeSlotsForDate(date);
           checkFormValidity();
         }
       });
     }
   }
 
-  function setupServiceSelection() {
-    const container = $('#serviceOptions');
+  // 🆕 NEW FUNCTION: Fetch available times from backend
+  async function fetchAvailableTimes(date) {
+    try {
+      const dateStr = formatDateForAPI(date);
+      const response = await fetch(`${API_URL}/api/available-times?date=${dateStr}`);
+      
+      if (!response.ok) {
+        throw new Error('Failed to fetch available times');
+      }
+      
+      const data = await response.json();
+      return data.availableTimes || [];
+    } catch (error) {
+      console.error('Error fetching available times:', error);
+      // Return default times if backend is not available
+      return ['08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00'];
+    }
+  }
+
+  // 🆕 Format date for API (YYYY-MM-DD)
+  function formatDateForAPI(date) {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
+
+  async function renderTimeSlotsForDate(date) {
+    const container = $('#timeSlots');
     if (!container) return;
 
-    container.addEventListener('change', (e) => {
+    container.innerHTML = '<div class="loading">Ładowanie dostępnych godzin...</div>';
+
+    try {
+      const availableTimes = await fetchAvailableTimes(date);
+      
+      container.innerHTML = '';
+      
+      if (availableTimes.length === 0) {
+        container.innerHTML = '<div class="no-slots">Brak dostępnych terminów na ten dzień</div>';
+        return;
+      }
+
+      availableTimes.forEach((time) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'time-slot';
+        btn.textContent = time;
+        btn.addEventListener('click', () => selectTimeSlot(time));
+        container.appendChild(btn);
+      });
+    } catch (error) {
+      container.innerHTML = '<div class="error">Błąd ładowania terminów</div>';
+      console.error('Error rendering time slots:', error);
+    }
+  }
+
+  function selectTimeSlot(time) {
+    selectedTime = time;
+    $$('.time-slot').forEach((btn) => {
+      btn.classList.toggle('selected', btn.textContent === time);
+    });
+    $('#selectedTime').value = time;
+    updateSummary();
+    checkFormValidity();
+  }
+
+  function setupServiceSelection() {
+    const serviceOptions = $('#serviceOptions');
+    if (!serviceOptions) return;
+
+    serviceOptions.addEventListener('change', (e) => {
       if (e.target.name === 'service') {
         selectedService = e.target.value;
-        $$('.service-option').forEach((l) => l.classList.remove('selected'));
-        e.target.closest('.service-option')?.classList.add('selected');
         updateSummary();
         checkFormValidity();
       }
     });
   }
 
-  function updateTimeSlots(date) {
-    const wrap = $('#timeSlots');
-    if (!wrap || !date) return;
-    const dateStr = date.toISOString().split('T')[0];
-    const booked  = bookedAppointments[dateStr] || [];
-    wrap.innerHTML = '';
-
-    availableTimes.forEach((t) => {
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'time-slot';
-      btn.textContent = t;
-      if (booked.includes(t)) {
-        btn.classList.add('unavailable');
-        btn.disabled = true;
-      } else {
-        btn.addEventListener('click', () => selectTime(t, btn));
-      }
-      wrap.appendChild(btn);
-    });
-  }
-
-  function selectTime(time, el) {
-    $$('.time-slot').forEach((b) => b.classList.remove('selected'));
-    el?.classList.add('selected');
-    selectedTime = time;
-    const hidden = $('#selectedTime');
-    if (hidden) hidden.value = time;
-    updateSummary();
-    checkFormValidity();
-  }
-
   function updateSummary() {
-    const s = $('#bookingSummary');
-    if (!s) return;
+    const summary = $('#bookingSummary');
+    if (!summary) return;
 
     if (selectedService && selectedDate && selectedTime) {
-      const svc = services[selectedService] || {};
-      $('#summaryService') && ($('#summaryService').textContent = svc.name || '');
-      $('#summaryDate')   && ($('#summaryDate').textContent   = selectedDate.toLocaleDateString('pl-PL'));
-      $('#summaryTime')   && ($('#summaryTime').textContent   = selectedTime);
-      $('#summaryPrice')  && ($('#summaryPrice').textContent  = svc.price || '');
-      s.hidden = false;
+      const svc = services[selectedService];
+      $('#summaryService').textContent = svc.name;
+      $('#summaryDate').textContent = selectedDate.toLocaleDateString('pl-PL');
+      $('#summaryTime').textContent = selectedTime;
+      $('#summaryPrice').textContent = svc.price;
+      summary.hidden = false;
     } else {
-      s.hidden = true;
+      summary.hidden = true;
     }
   }
 
@@ -336,45 +372,53 @@
     const lastName  = $('#lastName');
     const email     = $('#email');
     const phone     = $('#phone');
-    const submitBtn = $('#submitBtn');
+    const btn       = $('#submitBtn');
 
-    const ok = (firstName?.value?.trim())
-            && (lastName?.value?.trim())
-            && (email?.value?.trim())
-            && (phone?.value?.trim())
-            && selectedService && selectedDate && selectedTime;
+    if (!firstName || !lastName || !email || !phone || !btn) return;
 
-    if (submitBtn) submitBtn.disabled = !ok;
+    const valid =
+      firstName.value.trim() &&
+      lastName.value.trim() &&
+      email.value.trim() &&
+      phone.value.trim() &&
+      selectedService &&
+      selectedDate &&
+      selectedTime;
+
+    btn.disabled = !valid;
   }
 
   function resetForm() {
     const form = $('#bookingForm');
     if (form) form.reset();
-    $$('.service-option').forEach((o) => o.classList.remove('selected'));
-    $$('.time-slot').forEach((s) => s.classList.remove('selected'));
+    
+    selectedService = null;
+    selectedDate = null;
+    selectedTime = null;
+    
+    const timeSlots = $('#timeSlots');
+    if (timeSlots) timeSlots.innerHTML = '';
+    
     const summary = $('#bookingSummary');
     if (summary) summary.hidden = true;
-    const submitBtn = $('#submitBtn');
-    if (submitBtn) submitBtn.disabled = true;
-    selectedService = selectedDate = selectedTime = null;
+    
+    const btn = $('#submitBtn');
+    if (btn) {
+      btn.disabled = true;
+      btn.textContent = 'Potwierdź rezerwację';
+    }
   }
 
-  function durationToMinutes(durationStr) {
-    const m = durationStr?.match(/(\d+)\s*min/);
-    return m ? parseInt(m[1], 10) : 60;
+  function durationToMinutes(duration) {
+    const match = duration.match(/(\d+)/);
+    return match ? parseInt(match[1], 10) : 60;
   }
 
-  function buildGoogleCalendarUrl({
-    title, details, location, startDate, startTime, durationMin
-  }) {
-    const [h, m] = (startTime || '09:00').split(':').map(Number);
-    const start = new Date(
-      startDate.getFullYear(),
-      startDate.getMonth(),
-      startDate.getDate(),
-      h, m
-    );
-    const end   = new Date(start.getTime() + (durationMin || 60) * 60000);
+  function buildGoogleCalendarUrl({ title, details, location, startDate, startTime, durationMin }) {
+    const [h, m] = startTime.split(':').map(Number);
+    const start = new Date(startDate);
+    start.setHours(h, m, 0, 0);
+    const end = new Date(start.getTime() + durationMin * 60000);
 
     const pad = (n) => String(n).padStart(2, '0');
     const toGoogle = (dt) =>
@@ -440,7 +484,9 @@
     $$('.js-open-booking').forEach((btn) => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
-        openBookingModal();
+        // Get preselected service from data attribute
+        const preselectedService = btn.dataset.service || null;
+        openBookingModal(preselectedService);
       });
     });
 
@@ -458,11 +504,12 @@
     setupServiceSelection();
     addFormValidation();
 
-    // Booking submit
+    // 🆕 NEW BOOKING SUBMIT - Connects to backend
     const bookingForm = $('#bookingForm');
     if (bookingForm) {
-      bookingForm.addEventListener('submit', (e) => {
+      bookingForm.addEventListener('submit', async (e) => {
         e.preventDefault();
+        
         if (!selectedService || !selectedDate || !selectedTime) {
           alert('Proszę wypełnić wszystkie wymagane pola.');
           return;
@@ -470,32 +517,71 @@
 
         const svc = services[selectedService];
         const btn = $('#submitBtn');
-        const email = $('#email');
+        const firstName = $('#firstName').value;
+        const lastName = $('#lastName').value;
+        const email = $('#email').value;
+        const phone = $('#phone').value;
+        const notes = $('#notes').value;
 
-        if (btn) { btn.textContent = 'Zapisywanie…'; btn.disabled = true; }
+        if (btn) { 
+          btn.textContent = 'Zapisywanie…'; 
+          btn.disabled = true; 
+        }
 
-        setTimeout(() => {
-          if (email) {
-            alert(`Dziękujemy! Rezerwacja: ${svc.name} — ${selectedDate.toLocaleDateString('pl-PL')} ${selectedTime}. Potwierdzenie wyślemy na ${email.value}.`);
+        try {
+          // 🆕 Send booking to backend
+          const response = await fetch(`${API_URL}/api/bookings`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              firstName,
+              lastName,
+              email,
+              phone,
+              service: svc.name,
+              date: formatDateForAPI(selectedDate),
+              time: selectedTime,
+              notes,
+              price: svc.price
+            })
+          });
+
+          const data = await response.json();
+
+          if (!response.ok) {
+            throw new Error(data.error || 'Błąd podczas rezerwacji');
           }
-          if (btn) btn.textContent = 'Potwierdź rezerwację';
 
+          // Success!
+          alert(`Dziękujemy! Rezerwacja potwierdzona:\n${svc.name}\n${selectedDate.toLocaleDateString('pl-PL')} ${selectedTime}\n\nPotwierdzenie wyślemy na ${email}.`);
+
+          // Open Google Calendar
           try {
-            const url = buildGoogleCalendarUrl({
+            const calendarUrl = buildGoogleCalendarUrl({
               title: svc.name,
-              details: 'Wizyta w NutriMedic. Prosimy o przybycie 5 minut wcześniej.',
-              location: 'ul. Na Gródku 2/8, Kraków',
+              details: 'Wizyta w HARMONIA. Prosimy o przybycie 5 minut wcześniej.',
+              location: 'ul. Zacisze 16/1, Kraków',
               startDate: selectedDate,
               startTime: selectedTime,
               durationMin: durationToMinutes(svc.duration)
             });
-            window.open(url, '_blank');
+            window.open(calendarUrl, '_blank');
           } catch(e) {
             console.log('Could not open calendar link:', e);
           }
 
           closeBookingModal();
-        }, 600);
+
+        } catch (error) {
+          console.error('Booking error:', error);
+          alert(`Wystąpił błąd: ${error.message}\n\nProszę spróbować ponownie lub skontaktować się telefonicznie: 692 922 926`);
+          if (btn) {
+            btn.textContent = 'Potwierdź rezerwację';
+            btn.disabled = false;
+          }
+        }
       });
     }
 
